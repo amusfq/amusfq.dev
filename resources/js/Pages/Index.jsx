@@ -217,7 +217,7 @@ const Index = () => {
                             <rect height="100%" width="100%"></rect>
                         </svg>
                     </div>
-                    <div className="text-lg mt-8 text-center px-4 md:px-24">
+                    <div className="text-lg mt-8 text-center px-4 md:px-24 dark:text-white">
                         in my spare time I improve my skills in web development
                         using
                         <a
