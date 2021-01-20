@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+* {
+    font-family: "Quicksand", sans-serif;
+}
+.roboto {
+    font-family: "Roboto", sans-serif;
+}
+#paper {
+    width: 21cm;
+    min-height: 29.7cm;
+}
+@tailwind utilities;
+
+@layer utilities {
+    @variants dark, hover, focus {
+        .filter-none {
+            filter: none;
+        }
+        .filter-grayscale {
+            filter: grayscale(100%);
+        }
+    }
+}
