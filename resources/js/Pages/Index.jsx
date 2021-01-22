@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import { usePage } from "@inertiajs/inertia-react";
+import { SimpleImg } from "react-simple-img";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
@@ -33,7 +34,7 @@ const Index = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto">
                     {/* Left Grid */}
                     <div className="flex justify-center lg:justify-end">
-                        <img
+                        <SimpleImg
                             className="w-64 h-64 rounded-full ring-4 ring-blue-500"
                             src="me.jpg"
                             alt="Achmad Musyaffa Taufiqi"
@@ -535,8 +536,8 @@ const Index = () => {
 
 const Project = ({ img, title, teknologi, lang }) => {
     return (
-        <div className="cursor-pointer group relative h-52 w-full flex flex-col dark:bg-white overflow-hidden shadow-md">
-            <div className="p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-10 top-0 left-0 right-0 bottom-0 bg-white">
+        <div className="cursor-pointer group relative h-52 w-full flex flex-col bg-gray-100 overflow-hidden shadow-md">
+            <div className="p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-50 top-0 left-0 right-0 bottom-0 bg-white">
                 <div className="flex flex-col">
                     <h1 className="transform -translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out text-center text-gray-800 font-bold text-xl">
                         {title}
@@ -554,11 +555,17 @@ const Project = ({ img, title, teknologi, lang }) => {
                     </a>
                 </div>
             </div>
-            <img
-                className="h-52 w-full object-cover object-center"
-                src={`storage/images/${img.split(",")[0]}`}
-                alt=""
-            />
+            <div className="absolute inset-0 z-10">
+                <SimpleImg
+                    className="h-52 w-full object-cover object-center"
+                    src={`storage/images/${img.split(",")[0]}`}
+                    alt={title}
+                    importance="low"
+                />
+            </div>
+            <div className="absolute z-0 top-1/2 left-0 right-0 transform -translate-y-1/2 text-center text-xl font-bold">
+                No Image
+            </div>
         </div>
     );
 };

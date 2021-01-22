@@ -2326,8 +2326,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
-/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
+/* harmony import */ var react_simple_img__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-simple-img */ "./node_modules/react-simple-img/lib/index.js");
+/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
+/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2339,6 +2340,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2374,7 +2376,7 @@ var Index = function Index() {
       setLang(Number(ls));
     }
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Header__WEBPACK_IMPORTED_MODULE_2__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Header__WEBPACK_IMPORTED_MODULE_3__.default, {
     lang: lang,
     changeLanguage: changeLanguage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2383,7 +2385,7 @@ var Index = function Index() {
     className: "grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex justify-center lg:justify-end"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_simple_img__WEBPACK_IMPORTED_MODULE_2__.SimpleImg, {
     className: "w-64 h-64 rounded-full ring-4 ring-blue-500",
     src: "me.jpg",
     alt: "Achmad Musyaffa Taufiqi"
@@ -2781,7 +2783,7 @@ var Index = function Index() {
     d: "M-29.911 405.093l519.963-300.885V-14.513H-29.911z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
     d: "M75.83 256.001c-.891-148.089 197.459-213.479 282.996-75.878l-65.635 37.98C253.569 152.569 155.19 176.002 151.659 256c1.06 73.729 97.754 107.978 141.536 37.893l65.635 37.979c-75.382 130.863-279.198 83.781-283-75.871zM326 213h12.5l-8.541 82.5h-12.735zM352.776 213h12.5l-8.541 82.5H344zM312 232.592h62.5v12.072H312zM308.5 262H371v12.072h-62.5z"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Footer__WEBPACK_IMPORTED_MODULE_3__.default, {
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Footer__WEBPACK_IMPORTED_MODULE_4__.default, {
     lang: me[lang].contact
   }));
 };
@@ -2792,9 +2794,9 @@ var Project = function Project(_ref) {
       teknologi = _ref.teknologi,
       lang = _ref.lang;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "cursor-pointer group relative h-52 w-full flex flex-col dark:bg-white overflow-hidden shadow-md"
+    className: "cursor-pointer group relative h-52 w-full flex flex-col bg-gray-100 overflow-hidden shadow-md"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-10 top-0 left-0 right-0 bottom-0 bg-white"
+    className: "p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-50 top-0 left-0 right-0 bottom-0 bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex flex-col"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
@@ -2804,11 +2806,16 @@ var Project = function Project(_ref) {
   }, teknologi.replace(",", " / ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "/project/".concat(title.replace(" ", "-").toLowerCase()),
     className: "transform translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out mt-8 self-center bg-blue-500 hover:bg-blue-600 px-4 py-1 font-bold rounded-md text-white"
-  }, lang))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+  }, lang))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "absolute inset-0 z-10"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_simple_img__WEBPACK_IMPORTED_MODULE_2__.SimpleImg, {
     className: "h-52 w-full object-cover object-center",
     src: "storage/images/".concat(img.split(",")[0]),
-    alt: ""
-  }));
+    alt: title,
+    importance: "low"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "absolute z-0 top-1/2 left-0 right-0 transform -translate-y-1/2 text-center text-xl font-bold"
+  }, "No Image"));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
@@ -10706,6 +10713,742 @@ if (true) {
 
 /***/ }),
 
+/***/ "./node_modules/intersection-observer/intersection-observer.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/intersection-observer/intersection-observer.js ***!
+  \*********************************************************************/
+/***/ (() => {
+
+/**
+ * Copyright 2016 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the W3C SOFTWARE AND DOCUMENT NOTICE AND LICENSE.
+ *
+ *  https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ */
+
+(function(window, document) {
+'use strict';
+
+
+// Exits early if all IntersectionObserver and IntersectionObserverEntry
+// features are natively supported.
+if ('IntersectionObserver' in window &&
+    'IntersectionObserverEntry' in window &&
+    'intersectionRatio' in window.IntersectionObserverEntry.prototype) {
+
+  // Minimal polyfill for Edge 15's lack of `isIntersecting`
+  // See: https://github.com/w3c/IntersectionObserver/issues/211
+  if (!('isIntersecting' in window.IntersectionObserverEntry.prototype)) {
+    Object.defineProperty(window.IntersectionObserverEntry.prototype,
+      'isIntersecting', {
+      get: function () {
+        return this.intersectionRatio > 0;
+      }
+    });
+  }
+  return;
+}
+
+
+/**
+ * An IntersectionObserver registry. This registry exists to hold a strong
+ * reference to IntersectionObserver instances currently observing a target
+ * element. Without this registry, instances without another reference may be
+ * garbage collected.
+ */
+var registry = [];
+
+
+/**
+ * Creates the global IntersectionObserverEntry constructor.
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-entry
+ * @param {Object} entry A dictionary of instance properties.
+ * @constructor
+ */
+function IntersectionObserverEntry(entry) {
+  this.time = entry.time;
+  this.target = entry.target;
+  this.rootBounds = entry.rootBounds;
+  this.boundingClientRect = entry.boundingClientRect;
+  this.intersectionRect = entry.intersectionRect || getEmptyRect();
+  this.isIntersecting = !!entry.intersectionRect;
+
+  // Calculates the intersection ratio.
+  var targetRect = this.boundingClientRect;
+  var targetArea = targetRect.width * targetRect.height;
+  var intersectionRect = this.intersectionRect;
+  var intersectionArea = intersectionRect.width * intersectionRect.height;
+
+  // Sets intersection ratio.
+  if (targetArea) {
+    // Round the intersection ratio to avoid floating point math issues:
+    // https://github.com/w3c/IntersectionObserver/issues/324
+    this.intersectionRatio = Number((intersectionArea / targetArea).toFixed(4));
+  } else {
+    // If area is zero and is intersecting, sets to 1, otherwise to 0
+    this.intersectionRatio = this.isIntersecting ? 1 : 0;
+  }
+}
+
+
+/**
+ * Creates the global IntersectionObserver constructor.
+ * https://w3c.github.io/IntersectionObserver/#intersection-observer-interface
+ * @param {Function} callback The function to be invoked after intersection
+ *     changes have queued. The function is not invoked if the queue has
+ *     been emptied by calling the `takeRecords` method.
+ * @param {Object=} opt_options Optional configuration options.
+ * @constructor
+ */
+function IntersectionObserver(callback, opt_options) {
+
+  var options = opt_options || {};
+
+  if (typeof callback != 'function') {
+    throw new Error('callback must be a function');
+  }
+
+  if (options.root && options.root.nodeType != 1) {
+    throw new Error('root must be an Element');
+  }
+
+  // Binds and throttles `this._checkForIntersections`.
+  this._checkForIntersections = throttle(
+      this._checkForIntersections.bind(this), this.THROTTLE_TIMEOUT);
+
+  // Private properties.
+  this._callback = callback;
+  this._observationTargets = [];
+  this._queuedEntries = [];
+  this._rootMarginValues = this._parseRootMargin(options.rootMargin);
+
+  // Public properties.
+  this.thresholds = this._initThresholds(options.threshold);
+  this.root = options.root || null;
+  this.rootMargin = this._rootMarginValues.map(function(margin) {
+    return margin.value + margin.unit;
+  }).join(' ');
+}
+
+
+/**
+ * The minimum interval within which the document will be checked for
+ * intersection changes.
+ */
+IntersectionObserver.prototype.THROTTLE_TIMEOUT = 100;
+
+
+/**
+ * The frequency in which the polyfill polls for intersection changes.
+ * this can be updated on a per instance basis and must be set prior to
+ * calling `observe` on the first target.
+ */
+IntersectionObserver.prototype.POLL_INTERVAL = null;
+
+/**
+ * Use a mutation observer on the root element
+ * to detect intersection changes.
+ */
+IntersectionObserver.prototype.USE_MUTATION_OBSERVER = true;
+
+
+/**
+ * Starts observing a target element for intersection changes based on
+ * the thresholds values.
+ * @param {Element} target The DOM element to observe.
+ */
+IntersectionObserver.prototype.observe = function(target) {
+  var isTargetAlreadyObserved = this._observationTargets.some(function(item) {
+    return item.element == target;
+  });
+
+  if (isTargetAlreadyObserved) {
+    return;
+  }
+
+  if (!(target && target.nodeType == 1)) {
+    throw new Error('target must be an Element');
+  }
+
+  this._registerInstance();
+  this._observationTargets.push({element: target, entry: null});
+  this._monitorIntersections();
+  this._checkForIntersections();
+};
+
+
+/**
+ * Stops observing a target element for intersection changes.
+ * @param {Element} target The DOM element to observe.
+ */
+IntersectionObserver.prototype.unobserve = function(target) {
+  this._observationTargets =
+      this._observationTargets.filter(function(item) {
+
+    return item.element != target;
+  });
+  if (!this._observationTargets.length) {
+    this._unmonitorIntersections();
+    this._unregisterInstance();
+  }
+};
+
+
+/**
+ * Stops observing all target elements for intersection changes.
+ */
+IntersectionObserver.prototype.disconnect = function() {
+  this._observationTargets = [];
+  this._unmonitorIntersections();
+  this._unregisterInstance();
+};
+
+
+/**
+ * Returns any queue entries that have not yet been reported to the
+ * callback and clears the queue. This can be used in conjunction with the
+ * callback to obtain the absolute most up-to-date intersection information.
+ * @return {Array} The currently queued entries.
+ */
+IntersectionObserver.prototype.takeRecords = function() {
+  var records = this._queuedEntries.slice();
+  this._queuedEntries = [];
+  return records;
+};
+
+
+/**
+ * Accepts the threshold value from the user configuration object and
+ * returns a sorted array of unique threshold values. If a value is not
+ * between 0 and 1 and error is thrown.
+ * @private
+ * @param {Array|number=} opt_threshold An optional threshold value or
+ *     a list of threshold values, defaulting to [0].
+ * @return {Array} A sorted list of unique and valid threshold values.
+ */
+IntersectionObserver.prototype._initThresholds = function(opt_threshold) {
+  var threshold = opt_threshold || [0];
+  if (!Array.isArray(threshold)) threshold = [threshold];
+
+  return threshold.sort().filter(function(t, i, a) {
+    if (typeof t != 'number' || isNaN(t) || t < 0 || t > 1) {
+      throw new Error('threshold must be a number between 0 and 1 inclusively');
+    }
+    return t !== a[i - 1];
+  });
+};
+
+
+/**
+ * Accepts the rootMargin value from the user configuration object
+ * and returns an array of the four margin values as an object containing
+ * the value and unit properties. If any of the values are not properly
+ * formatted or use a unit other than px or %, and error is thrown.
+ * @private
+ * @param {string=} opt_rootMargin An optional rootMargin value,
+ *     defaulting to '0px'.
+ * @return {Array<Object>} An array of margin objects with the keys
+ *     value and unit.
+ */
+IntersectionObserver.prototype._parseRootMargin = function(opt_rootMargin) {
+  var marginString = opt_rootMargin || '0px';
+  var margins = marginString.split(/\s+/).map(function(margin) {
+    var parts = /^(-?\d*\.?\d+)(px|%)$/.exec(margin);
+    if (!parts) {
+      throw new Error('rootMargin must be specified in pixels or percent');
+    }
+    return {value: parseFloat(parts[1]), unit: parts[2]};
+  });
+
+  // Handles shorthand.
+  margins[1] = margins[1] || margins[0];
+  margins[2] = margins[2] || margins[0];
+  margins[3] = margins[3] || margins[1];
+
+  return margins;
+};
+
+
+/**
+ * Starts polling for intersection changes if the polling is not already
+ * happening, and if the page's visibility state is visible.
+ * @private
+ */
+IntersectionObserver.prototype._monitorIntersections = function() {
+  if (!this._monitoringIntersections) {
+    this._monitoringIntersections = true;
+
+    // If a poll interval is set, use polling instead of listening to
+    // resize and scroll events or DOM mutations.
+    if (this.POLL_INTERVAL) {
+      this._monitoringInterval = setInterval(
+          this._checkForIntersections, this.POLL_INTERVAL);
+    }
+    else {
+      addEvent(window, 'resize', this._checkForIntersections, true);
+      addEvent(document, 'scroll', this._checkForIntersections, true);
+
+      if (this.USE_MUTATION_OBSERVER && 'MutationObserver' in window) {
+        this._domObserver = new MutationObserver(this._checkForIntersections);
+        this._domObserver.observe(document, {
+          attributes: true,
+          childList: true,
+          characterData: true,
+          subtree: true
+        });
+      }
+    }
+  }
+};
+
+
+/**
+ * Stops polling for intersection changes.
+ * @private
+ */
+IntersectionObserver.prototype._unmonitorIntersections = function() {
+  if (this._monitoringIntersections) {
+    this._monitoringIntersections = false;
+
+    clearInterval(this._monitoringInterval);
+    this._monitoringInterval = null;
+
+    removeEvent(window, 'resize', this._checkForIntersections, true);
+    removeEvent(document, 'scroll', this._checkForIntersections, true);
+
+    if (this._domObserver) {
+      this._domObserver.disconnect();
+      this._domObserver = null;
+    }
+  }
+};
+
+
+/**
+ * Scans each observation target for intersection changes and adds them
+ * to the internal entries queue. If new entries are found, it
+ * schedules the callback to be invoked.
+ * @private
+ */
+IntersectionObserver.prototype._checkForIntersections = function() {
+  var rootIsInDom = this._rootIsInDom();
+  var rootRect = rootIsInDom ? this._getRootRect() : getEmptyRect();
+
+  this._observationTargets.forEach(function(item) {
+    var target = item.element;
+    var targetRect = getBoundingClientRect(target);
+    var rootContainsTarget = this._rootContainsTarget(target);
+    var oldEntry = item.entry;
+    var intersectionRect = rootIsInDom && rootContainsTarget &&
+        this._computeTargetAndRootIntersection(target, rootRect);
+
+    var newEntry = item.entry = new IntersectionObserverEntry({
+      time: now(),
+      target: target,
+      boundingClientRect: targetRect,
+      rootBounds: rootRect,
+      intersectionRect: intersectionRect
+    });
+
+    if (!oldEntry) {
+      this._queuedEntries.push(newEntry);
+    } else if (rootIsInDom && rootContainsTarget) {
+      // If the new entry intersection ratio has crossed any of the
+      // thresholds, add a new entry.
+      if (this._hasCrossedThreshold(oldEntry, newEntry)) {
+        this._queuedEntries.push(newEntry);
+      }
+    } else {
+      // If the root is not in the DOM or target is not contained within
+      // root but the previous entry for this target had an intersection,
+      // add a new record indicating removal.
+      if (oldEntry && oldEntry.isIntersecting) {
+        this._queuedEntries.push(newEntry);
+      }
+    }
+  }, this);
+
+  if (this._queuedEntries.length) {
+    this._callback(this.takeRecords(), this);
+  }
+};
+
+
+/**
+ * Accepts a target and root rect computes the intersection between then
+ * following the algorithm in the spec.
+ * TODO(philipwalton): at this time clip-path is not considered.
+ * https://w3c.github.io/IntersectionObserver/#calculate-intersection-rect-algo
+ * @param {Element} target The target DOM element
+ * @param {Object} rootRect The bounding rect of the root after being
+ *     expanded by the rootMargin value.
+ * @return {?Object} The final intersection rect object or undefined if no
+ *     intersection is found.
+ * @private
+ */
+IntersectionObserver.prototype._computeTargetAndRootIntersection =
+    function(target, rootRect) {
+
+  // If the element isn't displayed, an intersection can't happen.
+  if (window.getComputedStyle(target).display == 'none') return;
+
+  var targetRect = getBoundingClientRect(target);
+  var intersectionRect = targetRect;
+  var parent = getParentNode(target);
+  var atRoot = false;
+
+  while (!atRoot) {
+    var parentRect = null;
+    var parentComputedStyle = parent.nodeType == 1 ?
+        window.getComputedStyle(parent) : {};
+
+    // If the parent isn't displayed, an intersection can't happen.
+    if (parentComputedStyle.display == 'none') return;
+
+    if (parent == this.root || parent == document) {
+      atRoot = true;
+      parentRect = rootRect;
+    } else {
+      // If the element has a non-visible overflow, and it's not the <body>
+      // or <html> element, update the intersection rect.
+      // Note: <body> and <html> cannot be clipped to a rect that's not also
+      // the document rect, so no need to compute a new intersection.
+      if (parent != document.body &&
+          parent != document.documentElement &&
+          parentComputedStyle.overflow != 'visible') {
+        parentRect = getBoundingClientRect(parent);
+      }
+    }
+
+    // If either of the above conditionals set a new parentRect,
+    // calculate new intersection data.
+    if (parentRect) {
+      intersectionRect = computeRectIntersection(parentRect, intersectionRect);
+
+      if (!intersectionRect) break;
+    }
+    parent = getParentNode(parent);
+  }
+  return intersectionRect;
+};
+
+
+/**
+ * Returns the root rect after being expanded by the rootMargin value.
+ * @return {Object} The expanded root rect.
+ * @private
+ */
+IntersectionObserver.prototype._getRootRect = function() {
+  var rootRect;
+  if (this.root) {
+    rootRect = getBoundingClientRect(this.root);
+  } else {
+    // Use <html>/<body> instead of window since scroll bars affect size.
+    var html = document.documentElement;
+    var body = document.body;
+    rootRect = {
+      top: 0,
+      left: 0,
+      right: html.clientWidth || body.clientWidth,
+      width: html.clientWidth || body.clientWidth,
+      bottom: html.clientHeight || body.clientHeight,
+      height: html.clientHeight || body.clientHeight
+    };
+  }
+  return this._expandRectByRootMargin(rootRect);
+};
+
+
+/**
+ * Accepts a rect and expands it by the rootMargin value.
+ * @param {Object} rect The rect object to expand.
+ * @return {Object} The expanded rect.
+ * @private
+ */
+IntersectionObserver.prototype._expandRectByRootMargin = function(rect) {
+  var margins = this._rootMarginValues.map(function(margin, i) {
+    return margin.unit == 'px' ? margin.value :
+        margin.value * (i % 2 ? rect.width : rect.height) / 100;
+  });
+  var newRect = {
+    top: rect.top - margins[0],
+    right: rect.right + margins[1],
+    bottom: rect.bottom + margins[2],
+    left: rect.left - margins[3]
+  };
+  newRect.width = newRect.right - newRect.left;
+  newRect.height = newRect.bottom - newRect.top;
+
+  return newRect;
+};
+
+
+/**
+ * Accepts an old and new entry and returns true if at least one of the
+ * threshold values has been crossed.
+ * @param {?IntersectionObserverEntry} oldEntry The previous entry for a
+ *    particular target element or null if no previous entry exists.
+ * @param {IntersectionObserverEntry} newEntry The current entry for a
+ *    particular target element.
+ * @return {boolean} Returns true if a any threshold has been crossed.
+ * @private
+ */
+IntersectionObserver.prototype._hasCrossedThreshold =
+    function(oldEntry, newEntry) {
+
+  // To make comparing easier, an entry that has a ratio of 0
+  // but does not actually intersect is given a value of -1
+  var oldRatio = oldEntry && oldEntry.isIntersecting ?
+      oldEntry.intersectionRatio || 0 : -1;
+  var newRatio = newEntry.isIntersecting ?
+      newEntry.intersectionRatio || 0 : -1;
+
+  // Ignore unchanged ratios
+  if (oldRatio === newRatio) return;
+
+  for (var i = 0; i < this.thresholds.length; i++) {
+    var threshold = this.thresholds[i];
+
+    // Return true if an entry matches a threshold or if the new ratio
+    // and the old ratio are on the opposite sides of a threshold.
+    if (threshold == oldRatio || threshold == newRatio ||
+        threshold < oldRatio !== threshold < newRatio) {
+      return true;
+    }
+  }
+};
+
+
+/**
+ * Returns whether or not the root element is an element and is in the DOM.
+ * @return {boolean} True if the root element is an element and is in the DOM.
+ * @private
+ */
+IntersectionObserver.prototype._rootIsInDom = function() {
+  return !this.root || containsDeep(document, this.root);
+};
+
+
+/**
+ * Returns whether or not the target element is a child of root.
+ * @param {Element} target The target element to check.
+ * @return {boolean} True if the target element is a child of root.
+ * @private
+ */
+IntersectionObserver.prototype._rootContainsTarget = function(target) {
+  return containsDeep(this.root || document, target);
+};
+
+
+/**
+ * Adds the instance to the global IntersectionObserver registry if it isn't
+ * already present.
+ * @private
+ */
+IntersectionObserver.prototype._registerInstance = function() {
+  if (registry.indexOf(this) < 0) {
+    registry.push(this);
+  }
+};
+
+
+/**
+ * Removes the instance from the global IntersectionObserver registry.
+ * @private
+ */
+IntersectionObserver.prototype._unregisterInstance = function() {
+  var index = registry.indexOf(this);
+  if (index != -1) registry.splice(index, 1);
+};
+
+
+/**
+ * Returns the result of the performance.now() method or null in browsers
+ * that don't support the API.
+ * @return {number} The elapsed time since the page was requested.
+ */
+function now() {
+  return window.performance && performance.now && performance.now();
+}
+
+
+/**
+ * Throttles a function and delays its execution, so it's only called at most
+ * once within a given time period.
+ * @param {Function} fn The function to throttle.
+ * @param {number} timeout The amount of time that must pass before the
+ *     function can be called again.
+ * @return {Function} The throttled function.
+ */
+function throttle(fn, timeout) {
+  var timer = null;
+  return function () {
+    if (!timer) {
+      timer = setTimeout(function() {
+        fn();
+        timer = null;
+      }, timeout);
+    }
+  };
+}
+
+
+/**
+ * Adds an event handler to a DOM node ensuring cross-browser compatibility.
+ * @param {Node} node The DOM node to add the event handler to.
+ * @param {string} event The event name.
+ * @param {Function} fn The event handler to add.
+ * @param {boolean} opt_useCapture Optionally adds the even to the capture
+ *     phase. Note: this only works in modern browsers.
+ */
+function addEvent(node, event, fn, opt_useCapture) {
+  if (typeof node.addEventListener == 'function') {
+    node.addEventListener(event, fn, opt_useCapture || false);
+  }
+  else if (typeof node.attachEvent == 'function') {
+    node.attachEvent('on' + event, fn);
+  }
+}
+
+
+/**
+ * Removes a previously added event handler from a DOM node.
+ * @param {Node} node The DOM node to remove the event handler from.
+ * @param {string} event The event name.
+ * @param {Function} fn The event handler to remove.
+ * @param {boolean} opt_useCapture If the event handler was added with this
+ *     flag set to true, it should be set to true here in order to remove it.
+ */
+function removeEvent(node, event, fn, opt_useCapture) {
+  if (typeof node.removeEventListener == 'function') {
+    node.removeEventListener(event, fn, opt_useCapture || false);
+  }
+  else if (typeof node.detatchEvent == 'function') {
+    node.detatchEvent('on' + event, fn);
+  }
+}
+
+
+/**
+ * Returns the intersection between two rect objects.
+ * @param {Object} rect1 The first rect.
+ * @param {Object} rect2 The second rect.
+ * @return {?Object} The intersection rect or undefined if no intersection
+ *     is found.
+ */
+function computeRectIntersection(rect1, rect2) {
+  var top = Math.max(rect1.top, rect2.top);
+  var bottom = Math.min(rect1.bottom, rect2.bottom);
+  var left = Math.max(rect1.left, rect2.left);
+  var right = Math.min(rect1.right, rect2.right);
+  var width = right - left;
+  var height = bottom - top;
+
+  return (width >= 0 && height >= 0) && {
+    top: top,
+    bottom: bottom,
+    left: left,
+    right: right,
+    width: width,
+    height: height
+  };
+}
+
+
+/**
+ * Shims the native getBoundingClientRect for compatibility with older IE.
+ * @param {Element} el The element whose bounding rect to get.
+ * @return {Object} The (possibly shimmed) rect of the element.
+ */
+function getBoundingClientRect(el) {
+  var rect;
+
+  try {
+    rect = el.getBoundingClientRect();
+  } catch (err) {
+    // Ignore Windows 7 IE11 "Unspecified error"
+    // https://github.com/w3c/IntersectionObserver/pull/205
+  }
+
+  if (!rect) return getEmptyRect();
+
+  // Older IE
+  if (!(rect.width && rect.height)) {
+    rect = {
+      top: rect.top,
+      right: rect.right,
+      bottom: rect.bottom,
+      left: rect.left,
+      width: rect.right - rect.left,
+      height: rect.bottom - rect.top
+    };
+  }
+  return rect;
+}
+
+
+/**
+ * Returns an empty rect object. An empty rect is returned when an element
+ * is not in the DOM.
+ * @return {Object} The empty rect.
+ */
+function getEmptyRect() {
+  return {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: 0,
+    height: 0
+  };
+}
+
+/**
+ * Checks to see if a parent element contains a child element (including inside
+ * shadow DOM).
+ * @param {Node} parent The parent element.
+ * @param {Node} child The child element.
+ * @return {boolean} True if the parent node contains the child node.
+ */
+function containsDeep(parent, child) {
+  var node = child;
+  while (node) {
+    if (node == parent) return true;
+
+    node = getParentNode(node);
+  }
+  return false;
+}
+
+
+/**
+ * Gets the parent node of an element or its host element if the parent node
+ * is a shadow root.
+ * @param {Node} node The node whose parent to get.
+ * @return {Node|null} The parent node or null if no parent exists.
+ */
+function getParentNode(node) {
+  var parent = node.parentNode;
+
+  if (parent && parent.nodeType == 11 && parent.host) {
+    // If the parent is a shadow root, return the host element.
+    return parent.host;
+  }
+  return parent;
+}
+
+
+// Exposes the constructors globally.
+window.IntersectionObserver = IntersectionObserver;
+window.IntersectionObserverEntry = IntersectionObserverEntry;
+
+}(window, document));
+
+
+/***/ }),
+
 /***/ "./node_modules/popmotion/dist/popmotion.es.js":
 /*!*****************************************************!*\
   !*** ./node_modules/popmotion/dist/popmotion.es.js ***!
@@ -12007,6 +12750,730 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
     privateMap.set(receiver, value);
     return value;
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/react-simple-img/lib/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/react-simple-img/lib/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var React = _interopDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+
+  var target = _objectWithoutPropertiesLoose(source, excluded);
+
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+var pathRegex = /^(.*\/)([^/]*)$/;
+function validImgSrc(placeholder) {
+  return placeholder && (pathRegex.test(placeholder) || placeholder.indexOf('data:image') === 0);
+}
+
+// 
+function parseSrcset(srcset) {
+  var sSources = srcset.match(/\s*(?:[\S]*)(?:\s+(?:-?(?:\d+(?:\.(?:\d+)?)?|\.\d+)[a-zA-Z]))?(?:\s*,)?/g);
+  if (!Array.isArray(sSources)) throw new Error("\uD83D\uDCA9 srcset is invalid ".concat(JSON.stringify(sSources, null, 2)));
+  var sources = [];
+
+  for (var i = 0; i < sSources.length; i += 1) {
+    var sSource = sSources[i].trim();
+
+    if (sSource.substr(-1) === ',') {
+      sSource = sSource.substr(0, sSource.length - 1).trim();
+    }
+
+    var parts = sSource.split(/\s+/, 2);
+
+    if (parts.length === 0 || parts.length === 1 && !parts[0] || parts.length === 2 && !parts[0] && !parts[1]) {
+      continue; // eslint-disable-line no-continue
+    }
+
+    var url = parts[0];
+
+    if (parts.length === 1 || parts.length === 2 && !parts[1]) {
+      // If no "w" or "x" specified, we assume it's "1x".
+      sources.push({
+        url: url,
+        width: undefined,
+        dpr: 1
+      });
+    } else {
+      var spec = parts[1].toLowerCase();
+      var lastChar = spec.substring(spec.length - 1);
+
+      if (lastChar === 'w') {
+        sources.push({
+          url: url,
+          width: parseFloat(spec),
+          dpr: undefined
+        });
+      } else if (lastChar === 'x') {
+        sources.push({
+          url: url,
+          width: undefined,
+          dpr: parseFloat(spec)
+        });
+      }
+    }
+  }
+
+  return sources;
+}
+
+// 
+var findClosestDpr = (function (result, target) {
+  return result.reduce(function (prev, curr) {
+    return Math.abs(curr.dpr - target) < Math.abs(prev.dpr - target) ? curr : prev;
+  });
+});
+
+function filterImgSrc(_ref) {
+  var _ref$dataset = _ref.dataset,
+      src = _ref$dataset.src,
+      srcset = _ref$dataset.srcset;
+  if (!srcset) return src; // $FlowIgnoreLine: DOM api
+
+  var clientWidth = document.documentElement.clientWidth || window.innerWidth; // eslint-disable-line no-undef
+
+  var devicePixelRatio = window.devicePixelRatio; // eslint-disable-line no-undef
+
+  var parsedSrcset = parseSrcset(srcset);
+  var srcInArray = parsedSrcset.map(function (s) {
+    return _objectSpread2({}, s, {}, !s.dpr && s.width ? {
+      dpr: s.width / clientWidth
+    } : null);
+  });
+  var foundSrc = srcInArray.find(function (_ref2) {
+    var dpr = _ref2.dpr;
+    return devicePixelRatio === dpr;
+  });
+  return foundSrc ? foundSrc.url : findClosestDpr(srcInArray, devicePixelRatio).url;
+}
+
+// 
+var fetchImage = (function (image, imageSrc) {
+  return new Promise(function (resolve, error) {
+    image.src = imageSrc; // eslint-disable-line no-param-reassign
+
+    image.onload = resolve; // eslint-disable-line no-param-reassign
+
+    image.onerror = error; // eslint-disable-line no-param-reassign
+  });
+});
+
+// 
+function applyStyle(target, withoutPlaceholder) {
+  /* eslint-disable */
+  target.style.opacity = withoutPlaceholder ? 1 : 0;
+  /* eslint-enable */
+}
+function applyImage(target, image, src) {
+  /* eslint-disable */
+  target.src = src;
+  target.style.visibility = 'visible';
+
+  if (target.dataset.srcset) {
+    target.srcset = target.dataset.srcset;
+  }
+
+  var withoutPlaceholder = target.getAttribute('data-placeholder') === 'false';
+  /* eslint-enable */
+
+  var targetElement = withoutPlaceholder ? target : target.nextSibling;
+
+  if (targetElement) {
+    target.addEventListener('load', function () {
+      if (!target) return;
+      applyStyle(targetElement, withoutPlaceholder);
+      target.removeEventListener('load', applyStyle);
+    });
+  }
+
+  window.__REACT_SIMPLE_IMG__.imgLoadingRefs["delete"](target);
+}
+
+// 
+function logError(message, target) {
+  var e = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+
+  if (window.__REACT_SIMPLE_IMG__.logConsoleError) {
+    console.error("".concat(message, "\n\n").concat(target.outerHTML, "\n\nand error message ").concat(e.message));
+  }
+}
+
+function setImageHeight(image, target) {
+  image.addEventListener('load', function (e) {
+    target.parentNode.style.height = "".concat(e.target.height, "px"); // eslint-disable-line
+
+    target.parentNode.style.visibility = 'visible'; // eslint-disable-line
+  });
+}
+
+// 
+function updateSessionStorage(src) {
+  try {
+    var cachedImages = JSON.parse(window.sessionStorage.getItem('__REACT_SIMPLE_IMG__')) || {};
+    cachedImages[src] = +new Date();
+    window.sessionStorage.setItem('__REACT_SIMPLE_IMG__', JSON.stringify(cachedImages));
+  } catch (e) {
+    logError("Error marking image as cached ".concat(e));
+  }
+}
+
+// 
+function imageLoader(target) {
+  try {
+    var image = new Image(); // eslint-disable-line no-undef
+
+    var _window$__REACT_SIMPL = window.__REACT_SIMPLE_IMG__,
+        observer = _window$__REACT_SIMPL.observer,
+        imgLoadingRefs = _window$__REACT_SIMPL.imgLoadingRefs;
+    var src = filterImgSrc(target);
+    observer.unobserve(target);
+    imgLoadingRefs.set(target, image);
+
+    if (!src) {
+      logError('Filter Image source returned empty image source', target);
+      return;
+    }
+
+    if (target.parentNode && target.parentNode.style.height === '1px') {
+      setImageHeight(image, target);
+    }
+
+    fetchImage(image, src).then(function () {
+      if (target) {
+        applyImage(target, image, src);
+        if (!window.__REACT_SIMPLE_IMG__) return;
+        var _window$__REACT_SIMPL2 = window.__REACT_SIMPLE_IMG__,
+            disableAnimateCachedImg = _window$__REACT_SIMPL2.disableAnimateCachedImg,
+            callBackRefs = _window$__REACT_SIMPL2.callBackRefs;
+
+        if (disableAnimateCachedImg) {
+          updateSessionStorage(src);
+        }
+
+        var callback = callBackRefs.get(target);
+        if (!callback) return;
+        callback();
+        callBackRefs["delete"](target);
+      }
+    })["catch"](function (e) {
+      logError('Fetch image failed with target', target, e);
+    });
+  } catch (e) {
+    logError('Image loader failed with target', target, e);
+  }
+}
+
+// 
+var defaultConfig = {
+  rootMargin: '0px 0px',
+  threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+};
+function onIntersection(entries) {
+  for (var i = 0, len = entries.length; i < len; i++) {
+    var _entries$i = entries[i],
+        intersectionRatio = _entries$i.intersectionRatio,
+        target = _entries$i.target;
+
+    if (intersectionRatio > 0) {
+      imageLoader(target);
+    }
+  }
+}
+function observerStart() {
+  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultConfig;
+  var disableAnimateCachedImg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var logConsoleError = arguments.length > 2 ? arguments[2] : undefined;
+  if (!window.IntersectionObserver) __webpack_require__(/*! intersection-observer */ "./node_modules/intersection-observer/intersection-observer.js"); // $FlowIgnoreLine:
+
+  var observer = new IntersectionObserver(function (entries) {
+    return onIntersection(entries);
+  }, config);
+  window.__REACT_SIMPLE_IMG__ = {
+    observer: observer,
+    imgLoadingRefs: new Map(),
+    callBackRefs: new Map(),
+    disableAnimateCachedImg: disableAnimateCachedImg,
+    logConsoleError: logConsoleError
+  };
+  return undefined;
+}
+
+// 
+function initSimpleImg() {
+  var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultConfig;
+  var disableAnimateCachedImg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+  var logConsoleError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  if (typeof window === 'undefined') return;
+  observerStart(config, disableAnimateCachedImg, logConsoleError);
+}
+
+var commonStyle = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%'
+};
+var defaultImgPlaceholder = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+var defaultPlaceholderColor = 'white';
+var hiddenStyle = {
+  visibility: 'hidden'
+};
+var expendWidth = {
+  width: '100%'
+};
+var aspectRatioChildStyle = {
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  top: 0,
+  left: 0
+};
+var wrapperCommonStyle = {
+  position: 'relative',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
+// 
+function getAspectRatio(_ref) {
+  var _ref$height = _ref.height,
+      height = _ref$height === void 0 ? 0 : _ref$height,
+      _ref$width = _ref.width,
+      width = _ref$width === void 0 ? 0 : _ref$width,
+      applyAspectRatio = _ref.applyAspectRatio;
+  var aspectRatio = parseInt(height, 10) / parseInt(width, 10);
+  var shouldUseAspectRatio = applyAspectRatio && !isNaN(aspectRatio); // eslint-disable-line
+
+  var aspectRatioStyle = {
+    position: 'relative',
+    display: 'block',
+    paddingBottom: shouldUseAspectRatio ? "".concat(Math.abs(aspectRatio * 100), "%") : ''
+  };
+  return {
+    shouldUseAspectRatio: shouldUseAspectRatio,
+    aspectRatioStyle: aspectRatioStyle
+  };
+}
+
+var SimpleImg =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(SimpleImg, _React$PureComponent);
+
+  function SimpleImg(props) {
+    var _this;
+
+    _classCallCheck(this, SimpleImg);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SimpleImg).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      isDocumentLoad: false,
+      isCached: false
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "element", React.createRef());
+
+    _defineProperty(_assertThisInitialized(_this), "setDocumentLoaded", function () {
+      _this.setState({
+        isDocumentLoad: true
+      });
+    });
+
+    if (typeof window !== 'undefined' && !window.__REACT_SIMPLE_IMG__) {
+      initSimpleImg();
+    }
+
+    return _this;
+  }
+
+  _createClass(SimpleImg, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var src = this.props.src;
+      var element = this.element.current;
+
+      if (window.__REACT_SIMPLE_IMG__.disableAnimateCachedImg && element // && element.getAttribute('data-from-server') === 'no'
+      ) {
+          try {
+            // Browsers with strict privacy settings could throw an error when
+            // attempting to use localStorage and sessionStorage.
+            var cachedImagesRefString = window.sessionStorage.getItem('__REACT_SIMPLE_IMG__');
+            var cachedImagesRef = JSON.parse(cachedImagesRefString) || {};
+
+            if (cachedImagesRef[src]) {
+              this.setState({
+                isCached: true
+              });
+              return;
+            }
+          } catch (e) {
+            logError("Error retrieving cached images ".concat(e));
+          }
+        }
+
+      if (document.readyState === 'complete') {
+        this.triggerImageLoadOrObserver();
+      } else {
+        window.addEventListener('load', this.setDocumentLoaded);
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (!prevState.isDocumentLoad && this.state.isDocumentLoad) {
+        this.triggerImageLoadOrObserver();
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('load', this.setDocumentLoaded);
+      if (!this.element.current) return;
+      var element = this.element.current;
+      var _window$__REACT_SIMPL = window.__REACT_SIMPLE_IMG__,
+          observer = _window$__REACT_SIMPL.observer,
+          imgLoadingRefs = _window$__REACT_SIMPL.imgLoadingRefs,
+          callBackRefs = _window$__REACT_SIMPL.callBackRefs;
+      observer.unobserve(element);
+
+      if (imgLoadingRefs.has(element)) {
+        imgLoadingRefs.get(element).src = '';
+        imgLoadingRefs["delete"](element);
+      }
+
+      callBackRefs["delete"](element);
+    }
+  }, {
+    key: "triggerImageLoadOrObserver",
+    value: function triggerImageLoadOrObserver() {
+      var _this$props = this.props,
+          importance = _this$props.importance,
+          onComplete = _this$props.onComplete;
+      var _window$__REACT_SIMPL2 = window.__REACT_SIMPLE_IMG__,
+          observer = _window$__REACT_SIMPL2.observer,
+          callBackRefs = _window$__REACT_SIMPL2.callBackRefs;
+
+      if (importance === 'auto') {
+        imageLoader(this.element.current);
+      } else {
+        observer.observe(this.element.current);
+      }
+
+      if (onComplete) callBackRefs.set(this.element.current, onComplete);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props2 = this.props,
+          src = _this$props2.src,
+          className = _this$props2.className,
+          height = _this$props2.height,
+          width = _this$props2.width,
+          alt = _this$props2.alt,
+          srcSet = _this$props2.srcSet,
+          applyAspectRatio = _this$props2.applyAspectRatio,
+          _this$props2$animatio = _this$props2.animationDuration,
+          animationDuration = _this$props2$animatio === void 0 ? 0.3 : _this$props2$animatio,
+          _this$props2$placehol = _this$props2.placeholder,
+          placeholder = _this$props2$placehol === void 0 ? defaultPlaceholderColor : _this$props2$placehol,
+          _this$props2$style = _this$props2.style,
+          style = _this$props2$style === void 0 ? {} : _this$props2$style,
+          restProps = _objectWithoutProperties(_this$props2, ["src", "className", "height", "width", "alt", "srcSet", "applyAspectRatio", "animationDuration", "placeholder", "style"]);
+
+      var isCached = this.state.isCached;
+      var disablePlaceholder = placeholder === false;
+      var isValidImgSrc = validImgSrc(placeholder);
+
+      var inlineStyle = _objectSpread2({}, commonStyle, {}, !isValidImgSrc ? {
+        background: placeholder
+      } : null, {
+        transition: "".concat(animationDuration, "s opacity")
+      });
+
+      var imgPlaceholder = isValidImgSrc ? placeholder : defaultImgPlaceholder;
+      var isSrcSetFulfilled = this.element.current && this.element.current.src !== imgPlaceholder;
+
+      var importance = restProps.importance,
+          onComplete = restProps.onComplete,
+          imgStyle = restProps.imgStyle,
+          restImgProps = _objectWithoutProperties(restProps, ["importance", "onComplete", "imgStyle"]);
+
+      var heightWidth = _objectSpread2({}, height ? {
+        height: style.height || height
+      } : null, {}, width ? {
+        width: style.width || width
+      } : null);
+
+      var isHeightAndWidthNotSet = !height && !width;
+
+      var _getAspectRatio = getAspectRatio({
+        height: height,
+        width: width,
+        applyAspectRatio: applyAspectRatio
+      }),
+          shouldUseAspectRatio = _getAspectRatio.shouldUseAspectRatio,
+          aspectRatioStyle = _getAspectRatio.aspectRatioStyle;
+
+      var imageProps = _objectSpread2({
+        alt: alt,
+        src: isCached ? src : imgPlaceholder,
+        srcSet: isCached ? srcSet : null
+      }, isCached ? null : _objectSpread2({
+        ref: this.element
+      }, disablePlaceholder ? {
+        'data-placeholder': 'false'
+      } : null, {
+        'data-src': src,
+        'data-srcset': srcSet
+      }), {}, restImgProps);
+
+      var noScript = React.createElement("noscript", null, React.createElement("img", {
+        src: src,
+        alt: alt,
+        style: imgStyle,
+        className: className
+      }));
+
+      if (disablePlaceholder && !applyAspectRatio) {
+        return React.createElement(React.Fragment, null, noScript, React.createElement("img", _extends({
+          style: _objectSpread2({}, style, {}, isCached ? null : {
+            transition: "".concat(animationDuration, "s opacity"),
+            opacity: 0
+          }, {}, imgStyle),
+          className: className
+        }, heightWidth, imageProps)));
+      }
+
+      var placeholderComponent = isValidImgSrc ? React.createElement("img", _extends({
+        style: inlineStyle,
+        src: placeholder,
+        alt: alt
+      }, restImgProps)) : React.createElement("div", {
+        style: inlineStyle
+      });
+
+      if (isCached) {
+        return React.createElement("div", {
+          style: _objectSpread2({}, shouldUseAspectRatio ? aspectRatioStyle : _objectSpread2({}, heightWidth, {}, wrapperCommonStyle, {}, style)),
+          className: className
+        }, React.createElement("img", _extends({
+          style: _objectSpread2({}, isHeightAndWidthNotSet ? expendWidth : heightWidth, {}, shouldUseAspectRatio ? aspectRatioChildStyle : null, {}, imgStyle)
+        }, imageProps)), noScript);
+      }
+
+      return React.createElement("div", {
+        style: _objectSpread2({}, shouldUseAspectRatio ? aspectRatioStyle : _objectSpread2({}, wrapperCommonStyle, {}, height ? {
+          height: height
+        } : {
+          height: 1,
+          visibility: 'hidden'
+        }, {}, style)),
+        className: className
+      }, noScript, React.createElement("img", _extends({
+        style: _objectSpread2({}, isHeightAndWidthNotSet ? expendWidth : heightWidth, {}, !isValidImgSrc && !isSrcSetFulfilled ? hiddenStyle : {}, {}, shouldUseAspectRatio ? aspectRatioChildStyle : null, {}, disablePlaceholder ? {
+          transition: "".concat(animationDuration, "s opacity"),
+          opacity: 0
+        } : null, {}, imgStyle)
+      }, imageProps)), !disablePlaceholder && placeholderComponent);
+    }
+  }]);
+
+  return SimpleImg;
+}(React.PureComponent);
+
+_defineProperty(SimpleImg, "defaultProps", {
+  animationDuration: 0.3,
+  importance: 'low',
+  placeholder: defaultPlaceholderColor
+});
+
+exports.SimpleImg = SimpleImg;
+exports.initSimpleImg = initSimpleImg;
 
 
 /***/ }),
