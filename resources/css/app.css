@@ -3,13 +3,20 @@
 * {
     font-family: "Quicksand", sans-serif;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 .roboto {
     font-family: "Roboto", sans-serif;
 }
+
 #paper {
     width: 21cm;
     min-height: 29.7cm;
 }
+
 @tailwind utilities;
 
 @layer utilities {

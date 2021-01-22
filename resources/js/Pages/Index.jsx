@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { InertiaLink } from "@inertiajs/inertia-react";
 import { usePage } from "@inertiajs/inertia-react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 const Index = () => {
-    const { data } = usePage().props;
-    const [bahasa, setBahasa] = useState(0);
-    const [github, setGithub] = useState([]);
+    const { me, projects } = usePage().props;
+    let [lang, setLang] = useState(0);
 
-    const content = {
-        me: [
-            [",", "", ""],
-            ["Hello,", "I'm Achmad Musyaffa Taufiqi", "a Full Stack Developer"],
-        ],
-        scroll: ["Gulir Kebawah", "Scroll Down"],
+    const changeLanguage = (id) => {
+        localStorage.setItem("lang", id);
+        setLang(id);
+    };
+
+    const scrollDown = () => {
+        let about = document.querySelector("#about-me");
+        window.scrollTo(0, about.offsetTop);
     };
 
     useEffect(() => {
         document.title = "Portfolio - Achmad Musyaffa Taufiqi";
+        let ls = localStorage.getItem("lang");
+        if (ls) {
+            setLang(Number(ls));
+        }
     }, []);
 
     return (
         <>
-            <Header />
+            <Header lang={lang} changeLanguage={changeLanguage} />
             <div className="max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl flex flex-col space-y-4 mt-40">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto">
                     {/* Left Grid */}
@@ -38,14 +44,14 @@ const Index = () => {
                         {/* Header Text */}
                         <div className="flex flex-col space-y-2">
                             <div className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200">
-                                Halo
+                                {me[lang].header.split(";")[0]}
                             </div>
                             <div className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200">
-                                Saya Achmad Musyaffa Taufiqi
+                                {me[lang].header.split(";")[1]}
                             </div>
                             <div className="relative inline-flex justify-center lg:justify-start">
                                 <div className="font-bold text-3xl text-center lg:text-left text-gray-800 dark:text-gray-200">
-                                    Full Stack Developer
+                                    {me[lang].header.split(";")[2]}
                                 </div>
                                 <svg
                                     className="absolute w-full-2 text-blue-400 -z-10 lg:-left-1 h-3 bottom-0"
@@ -64,9 +70,10 @@ const Index = () => {
                         <div>
                             <button
                                 className="group focus:outline-none focus:ring-2 ring-blue-500 w-auto text-gray-500 dark:text-gray-200 font-medium rounded-xl p-2 flex items-center mx-auto lg:mx-0"
-                                title="Scroll down"
+                                title={me[lang].scroll}
+                                onClick={scrollDown}
                             >
-                                {content.scroll[bahasa]}
+                                {me[lang].scroll}
                                 <svg
                                     className="w-4 h-4 ml-2 transform group-hover:translate-y-2 duration-200 ease-in-out"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -83,10 +90,10 @@ const Index = () => {
                         </div>
                     </div>
                 </div>
-                <div className="pt-32">
+                <div className="pt-32" id="about-me">
                     <div className="flex flex-col lg:flex-row items-center">
                         <span className="font-bold text-3xl text-gray-800 dark:text-gray-200">
-                            Tentang Saya
+                            {me[lang].tentang.split(";")[0]}
                         </span>
                         <svg
                             className="w-20 h-1 text-blue-500 mt-3 lg:ml-6 lg:mt-0"
@@ -97,8 +104,7 @@ const Index = () => {
                     </div>
                     <div className="grid grid-rows-2 mt-6 lg:grid-cols-3 lg:grid-rows-1">
                         <div className="text-lg text-center lg:text-left lg:col-span-2 leading-loose dark:text-white">
-                            I’m currently working as a freelance fullstack
-                            developer. I enjoy building web apps using
+                            {me[lang].tentang.split(";")[1]}
                             <a
                                 href="https://tailwindcss.com/"
                                 className="transform hover:-translate-y-2 duration-200 ease-in-out mx-2 rounded-full py-1 px-4 shadow-md hover:shadow-xl cursor-pointer inline-flex items-center dark:bg-white dark:text-black"
@@ -137,7 +143,7 @@ const Index = () => {
                                 </svg>
                                 TailwindCSS
                             </a>
-                            and
+                            {me[lang].tentang.split(";")[2]}
                             <a
                                 href="https://reactjs.org/"
                                 className="transform hover:-translate-y-2 duration-200 ease-in-out mx-2 rounded-full py-1 px-4 shadow-md hover:shadow-xl cursor-pointer inline-flex items-center dark:bg-white dark:text-black"
@@ -158,23 +164,23 @@ const Index = () => {
                                 </svg>
                                 React
                             </a>
-                            . I'm also an active student in Narotama University.
+                            {me[lang].tentang.split(";")[3]}
                         </div>
                         <div className="mt-6 lg:mt-0 flex items-start justify-end">
-                            <a
+                            <InertiaLink
                                 href="/resume"
                                 className="transform -translate-y-2 hover:translate-y-0 duration-200 ease-in-out shadow-lg hover:shadow focus:outline-none bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white font-bold rounded-full px-8 py-4"
-                                title="Resume"
+                                title={me[lang].download}
                             >
-                                Download Resume
-                            </a>
+                                {me[lang].download}
+                            </InertiaLink>
                         </div>
                     </div>
                 </div>
                 <div className="pt-32">
                     <div className="flex flex-col items-center">
                         <span className="font-bold text-3xl text-gray-800 dark:text-gray-200">
-                            Projects
+                            {me[lang].projects}
                         </span>
                         <svg
                             className="w-20 h-1 text-blue-500 mt-3"
@@ -184,13 +190,14 @@ const Index = () => {
                         </svg>
                     </div>
                     <div className="text-lg grid grid-rows-2 mt-6 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-1">
-                        {data &&
-                            data.map((item, index) => (
+                        {projects &&
+                            projects.map((item, index) => (
                                 <Project
                                     key={index}
                                     img={item.foto}
                                     title={item.judul}
                                     teknologi={item.teknologi}
+                                    lang={me[lang].more}
                                 />
                             ))}
                     </div>
@@ -199,16 +206,16 @@ const Index = () => {
                             href="https://github.com/amusfq"
                             target="_blank"
                             className="transform -translate-y-2 hover:translate-y-0 duration-200 ease-in-out shadow-lg hover:shadow focus:outline-none bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white font-bold rounded-full px-8 py-2"
-                            title="See more"
+                            title={me[lang].more}
                         >
-                            See More
+                            {me[lang].more}
                         </a>
                     </div>
                 </div>
                 <div className="pt-32">
                     <div className="flex flex-col items-center">
                         <span className="font-bold text-3xl text-gray-800 dark:text-gray-200">
-                            Skills
+                            {me[lang].skills.split(";")[0]}
                         </span>
                         <svg
                             className="w-20 h-1 text-blue-500 mt-3"
@@ -218,8 +225,7 @@ const Index = () => {
                         </svg>
                     </div>
                     <div className="text-lg mt-8 text-center px-4 md:px-24 dark:text-white">
-                        in my spare time I improve my skills in web development
-                        using
+                        {me[lang].skills.split(";")[1]}
                         <a
                             href="https://www.php.net/"
                             className="transform hover:-translate-y-2 duration-200 ease-in-out mx-2 rounded-full py-1 px-4 shadow-md hover:shadow-xl cursor-pointer inline-flex items-center dark:bg-white dark:text-black"
@@ -280,7 +286,7 @@ const Index = () => {
                             </svg>
                             PHP
                         </a>
-                        and
+                        {me[lang].skills.split(";")[2]}
                         <a
                             href="https://www.javascript.com/"
                             className="transform hover:-translate-y-2 duration-200 ease-in-out mx-2 rounded-full py-1 px-4 shadow-md hover:shadow-xl cursor-pointer inline-flex items-center dark:bg-white dark:text-black"
@@ -307,7 +313,7 @@ const Index = () => {
                             </svg>
                             Javascript
                         </a>
-                        . Now I have lerned this tools and frameworks:
+                        {me[lang].skills.split(";")[3]}
                     </div>
                     <div className="grid grid-cols-1 justify-items-center gap-8 mt-8">
                         <div className="flex space-x-8">
@@ -522,12 +528,12 @@ const Index = () => {
                 </div>
             </div>
 
-            <Footer />
+            <Footer lang={me[lang].contact} />
         </>
     );
 };
 
-const Project = ({ img, title, teknologi }) => {
+const Project = ({ img, title, teknologi, lang }) => {
     return (
         <div className="cursor-pointer group relative h-52 w-full flex flex-col dark:bg-white overflow-hidden shadow-md">
             <div className="p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-10 top-0 left-0 right-0 bottom-0 bg-white">
@@ -544,7 +550,7 @@ const Project = ({ img, title, teknologi }) => {
                             .toLowerCase()}`}
                         className="transform translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out mt-8 self-center bg-blue-500 hover:bg-blue-600 px-4 py-1 font-bold rounded-md text-white"
                     >
-                        Learn More
+                        {lang}
                     </a>
                 </div>
             </div>

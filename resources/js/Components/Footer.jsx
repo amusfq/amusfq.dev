@@ -1,12 +1,12 @@
 import React from "react";
 
-const Footer = () => {
+const Footer = ({lang}) => {
     return (
         <footer className="w-full pt-32 pb-16">
             <div className="max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl grid grid-cols-1 lg:grid-cols-2">
                 <div className="flex flex-col space-y-3 ">
                     <div className="inline-flex text-3xl text-gray-600 dark:text-gray-300 font-bold justify-center lg:justify-start whitespace-nowrap">
-                        Get in touch
+                        {lang}
                     </div>
                     <div className="relative inline-flex justify-center lg:justify-start">
                         <a
