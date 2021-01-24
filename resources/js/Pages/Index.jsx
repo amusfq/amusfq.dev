@@ -717,7 +717,7 @@ const Index = () => {
                                     <motion.img
                                         key={page}
                                         className="absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-center rounded-t-md"
-                                        src={`http://localhost:8000/storage/images/${images[page]}`}
+                                        src={`storage/images/${images[page]}`}
                                         custom={direction}
                                         variants={variants}
                                         initial="enter"
