@@ -12,7 +12,7 @@ class AppController extends Controller
 {
     public function index(Request $request) {
         $me = Me::get();
-        $projects = Portfolio::get();
+        $projects = Portfolio::limit(6)->get();
         return Inertia::render('Index', ['projects' => $projects, 'me' => $me]);
     }
 }

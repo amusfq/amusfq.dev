@@ -2,12 +2,45 @@ import React, { useEffect, useState } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import { usePage } from "@inertiajs/inertia-react";
 import { SimpleImg } from "react-simple-img";
+import { motion, AnimatePresence } from "framer-motion";
+import { wrap } from "popmotion";
+import { Transition } from "@headlessui/react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
+const variants = {
+    enter: (direction) => {
+        return {
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+    center: {
+        zIndex: 1,
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction) => {
+        return {
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+        };
+    },
+};
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+};
+
 const Index = () => {
     const { me, projects } = usePage().props;
-    let [lang, setLang] = useState(0);
+    const [lang, setLang] = useState(0);
+    const [page, setPage] = useState(0);
+    const [direction, setDirection] = useState(1);
+    const [images, setImages] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState({});
 
     const changeLanguage = (id) => {
         localStorage.setItem("lang", id);
@@ -19,6 +52,36 @@ const Index = () => {
         window.scrollTo(0, about.offsetTop);
     };
 
+    const openModal = (state, index) => {
+        let selected = projects[index];
+        let images = selected.foto.split(",");
+        setSelectedProject(selected);
+        setImages(images);
+        setIsOpen(state);
+    };
+
+    const closeModal = () => {
+        setSelectedProject({});
+        setPage(0);
+        setImages([]);
+        setIsOpen(false);
+    };
+    const paginate = (newDirection) => {
+        if (newDirection === -1) {
+            if (page === 0) {
+                setPage(images.length - 1);
+            } else {
+                setPage(page - 1);
+            }
+        } else {
+            if (page === images.length - 1) {
+                setPage(0);
+            } else {
+                setPage(page + 1);
+            }
+        }
+        setDirection(newDirection);
+    };
     useEffect(() => {
         document.title = "Portfolio - Achmad Musyaffa Taufiqi";
         let ls = localStorage.getItem("lang");
@@ -33,24 +96,44 @@ const Index = () => {
             <div className="max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl flex flex-col space-y-4 mt-40">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto">
                     {/* Left Grid */}
-                    <div className="flex justify-center lg:justify-end">
+                    <motion.div
+                        initial={{ width: 0, opacity: 0 }}
+                        animate={{ width: "auto", opacity: 1 }}
+                        transition={{ duration: 1.5 }}
+                        className="flex justify-center lg:justify-end h-64"
+                    >
                         <SimpleImg
-                            className="w-64 h-64 rounded-full ring-4 ring-blue-500"
+                            className="w-64 h-64 max-h-64 rounded-full ring-4 ring-blue-500"
                             src="me.jpg"
                             alt="Achmad Musyaffa Taufiqi"
                         />
-                    </div>
+                    </motion.div>
                     {/* Right Grid */}
                     <div className="flex flex-col justify-center space-y-4">
                         {/* Header Text */}
                         <div className="flex flex-col space-y-2">
-                            <div className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200">
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200"
+                            >
                                 {me[lang].header.split(";")[0]}
-                            </div>
-                            <div className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200">
+                            </motion.div>
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                className="font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200"
+                            >
                                 {me[lang].header.split(";")[1]}
-                            </div>
-                            <div className="relative inline-flex justify-center lg:justify-start">
+                            </motion.div>
+                            <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                className="relative inline-flex justify-center lg:justify-start"
+                            >
                                 <div className="font-bold text-3xl text-center lg:text-left text-gray-800 dark:text-gray-200">
                                     {me[lang].header.split(";")[2]}
                                 </div>
@@ -65,7 +148,7 @@ const Index = () => {
                                         width="100%"
                                     ></rect>
                                 </svg>
-                            </div>
+                            </motion.div>
                         </div>
                         {/* Scroll Button */}
                         <div>
@@ -92,18 +175,31 @@ const Index = () => {
                     </div>
                 </div>
                 <div className="pt-32" id="about-me">
-                    <div className="flex flex-col lg:flex-row items-center">
+                    <motion.div
+                        initial={{ x: -100, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 1.5 }}
+                        className="flex flex-col lg:flex-row items-center whitespace-nowrap"
+                    >
                         <span className="font-bold text-3xl text-gray-800 dark:text-gray-200">
                             {me[lang].tentang.split(";")[0]}
                         </span>
-                        <svg
+                        <motion.svg
+                            initial={{ width: 0, opacity: 0 }}
+                            animate={{ width: "auto", opacity: 1 }}
+                            transition={{ duration: 1.5 }}
                             className="w-20 h-1 text-blue-500 mt-3 lg:ml-6 lg:mt-0"
                             fill="currentColor"
                         >
                             <rect height="100%" width="100%"></rect>
-                        </svg>
-                    </div>
-                    <div className="grid grid-rows-2 mt-6 lg:grid-cols-3 lg:grid-rows-1">
+                        </motion.svg>
+                    </motion.div>
+                    <motion.div
+                        initial={{ y: 150, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1.5 }}
+                        className="grid grid-rows-2 mt-6 lg:grid-cols-3 lg:grid-rows-1"
+                    >
                         <div className="text-lg text-center lg:text-left lg:col-span-2 leading-loose dark:text-white">
                             {me[lang].tentang.split(";")[1]}
                             <a
@@ -176,7 +272,7 @@ const Index = () => {
                                 {me[lang].download}
                             </InertiaLink>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
                 <div className="pt-32">
                     <div className="flex flex-col items-center">
@@ -194,11 +290,13 @@ const Index = () => {
                         {projects &&
                             projects.map((item, index) => (
                                 <Project
+                                    index={index}
                                     key={index}
                                     img={item.foto}
                                     title={item.judul}
                                     teknologi={item.teknologi}
                                     lang={me[lang].more}
+                                    isOpen={openModal}
                                 />
                             ))}
                     </div>
@@ -214,7 +312,12 @@ const Index = () => {
                     </div>
                 </div>
                 <div className="pt-32">
-                    <div className="flex flex-col items-center">
+                    <motion.div
+                        initial={{ y: 150, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1 }}
+                        className="flex flex-col items-center"
+                    >
                         <span className="font-bold text-3xl text-gray-800 dark:text-gray-200">
                             {me[lang].skills.split(";")[0]}
                         </span>
@@ -224,8 +327,13 @@ const Index = () => {
                         >
                             <rect height="100%" width="100%"></rect>
                         </svg>
-                    </div>
-                    <div className="text-lg mt-8 text-center px-4 md:px-24 dark:text-white">
+                    </motion.div>
+                    <motion.div
+                        initial={{ y: 150, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1.5 }}
+                        className="text-lg mt-8 text-center px-4 md:px-24 dark:text-white"
+                    >
                         {me[lang].skills.split(";")[1]}
                         <a
                             href="https://www.php.net/"
@@ -315,10 +423,15 @@ const Index = () => {
                             Javascript
                         </a>
                         {me[lang].skills.split(";")[3]}
-                    </div>
+                    </motion.div>
                     <div className="grid grid-cols-1 justify-items-center gap-8 mt-8">
                         <div className="flex space-x-8">
-                            <a href="">
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1 }}
+                                href="https://reactjs.org"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     focusable="false"
@@ -331,8 +444,13 @@ const Index = () => {
                                         fill="#00D8FF"
                                     ></path>
                                 </svg>
-                            </a>
-                            <a href="">
+                            </motion.a>
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.3 }}
+                                href="https://tailwindcss.com"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     focusable="false"
@@ -363,8 +481,13 @@ const Index = () => {
                                         fill="url(#IconifyId-1771e3f8fac-dad491-2)"
                                     ></path>
                                 </svg>
-                            </a>
-                            <a href="">
+                            </motion.a>
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.6 }}
+                                href="https://laravel.com"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     focusable="false"
@@ -377,10 +500,15 @@ const Index = () => {
                                         fill="#FF2D20"
                                     ></path>
                                 </svg>
-                            </a>
+                            </motion.a>
                         </div>
                         <div className="flex space-x-8">
-                            <a href="">
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.9 }}
+                                href="https://getbootstrap.com/"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     focusable="false"
@@ -397,8 +525,13 @@ const Index = () => {
                                         fill="#FFF"
                                     ></path>
                                 </svg>
-                            </a>
-                            <a href="">
+                            </motion.a>
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1, delay: 1.2 }}
+                                href="https://python.org/"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -463,8 +596,13 @@ const Index = () => {
                                         />
                                     </g>
                                 </svg>
-                            </a>
-                            <a href="">
+                            </motion.a>
+                            <motion.a
+                                initial={{ y: 150, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 1, delay: 1.5 }}
+                                href="#"
+                            >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="text-5xl h-12 w-auto filter-grayscale hover:filter-none transform hover:scale-125 duration-100 ease-out cursor-pointer"
@@ -523,21 +661,158 @@ const Index = () => {
                                     </g>
                                     <path d="M75.83 256.001c-.891-148.089 197.459-213.479 282.996-75.878l-65.635 37.98C253.569 152.569 155.19 176.002 151.659 256c1.06 73.729 97.754 107.978 141.536 37.893l65.635 37.979c-75.382 130.863-279.198 83.781-283-75.871zM326 213h12.5l-8.541 82.5h-12.735zM352.776 213h12.5l-8.541 82.5H344zM312 232.592h62.5v12.072H312zM308.5 262H371v12.072h-62.5z" />
                                 </svg>
-                            </a>
+                            </motion.a>
                         </div>
                     </div>
                 </div>
             </div>
+            <Transition
+                show={isOpen}
+                enter="transition-opacity duration-75"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 p-4">
+                    <div className="mt-0 md:mt-24 max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl bg-white rounded-md shadow-lg">
+                        <div className="relative w-full h-96">
+                            <button
+                                onClick={() => paginate(-1)}
+                                className="absolute cursor-pointer focus:outline-none z-50 bottom-0 left-0 h-16 w-16 bg-black bg-opacity-30 hover:bg-opacity-50 rounded-tr-md text-white p-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                            <button
+                                onClick={() => paginate(1)}
+                                className="absolute cursor-pointer focus:outline-none z-50 bottom-0 right-0 h-16 w-16 bg-black bg-opacity-30 hover:bg-opacity-50 rounded-tl-md text-white p-2"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                            <div className="grid h-96 max-h-96">
+                                <AnimatePresence
+                                    initial={false}
+                                    custom={direction}
+                                >
+                                    <motion.img
+                                        key={page}
+                                        className="absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-center rounded-t-md"
+                                        src={`http://localhost:8000/storage/images/${images[page]}`}
+                                        custom={direction}
+                                        variants={variants}
+                                        initial="enter"
+                                        animate="center"
+                                        exit="exit"
+                                        transition={{
+                                            x: {
+                                                type: "spring",
+                                                stiffness: 300,
+                                                damping: 30,
+                                            },
+                                            opacity: { duration: 0.2 },
+                                        }}
+                                        drag="x"
+                                        dragConstraints={{ left: 0, right: 0 }}
+                                        dragElastic={1}
+                                        onDragEnd={(
+                                            e,
+                                            { offset, velocity }
+                                        ) => {
+                                            const swipe = swipePower(
+                                                offset.x,
+                                                velocity.x
+                                            );
 
+                                            if (
+                                                swipe <
+                                                -swipeConfidenceThreshold
+                                            ) {
+                                                paginate(1);
+                                            } else if (
+                                                swipe > swipeConfidenceThreshold
+                                            ) {
+                                                paginate(-1);
+                                            }
+                                        }}
+                                    />
+                                </AnimatePresence>
+                            </div>
+                        </div>
+                        <div className="border-t-4 border-gray-800 p-8">
+                            <div className="pb-4 border-b">
+                                <h1 className="font-bold text-3xl">
+                                    {selectedProject.judul}
+                                </h1>
+                                <h2 className="font-bold text-xl">
+                                    {selectedProject.untuk}
+                                </h2>
+                            </div>
+                            <div className="py-4">
+                                {selectedProject.keterangan}
+                            </div>
+                            <div className="flex flex-row justify-between items-center mt-4">
+                                {selectedProject.link ? (
+                                    <a
+                                        href={selectedProject.link}
+                                        target="_blank"
+                                        className="focus:outline-none rounded px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold"
+                                    >
+                                        {me[lang].more}
+                                    </a>
+                                ) : (
+                                    <div />
+                                )}
+                                <button
+                                    onClick={closeModal}
+                                    className="focus:outline-none w-8 h-8 text-gray-300 hover:text-gray-500 transform hover:scale-150 duration-200 ease-in-out"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </Transition>
             <Footer lang={me[lang].contact} />
         </>
     );
 };
 
-const Project = ({ img, title, teknologi, lang }) => {
+const Project = ({ index, img, title, teknologi, lang, isOpen }) => {
     return (
         <div className="cursor-pointer group relative h-52 w-full flex flex-col bg-gray-100 overflow-hidden shadow-md">
-            <div className="p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-50 top-0 left-0 right-0 bottom-0 bg-white">
+            <div className="p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-40 top-0 left-0 right-0 bottom-0 bg-white">
                 <div className="flex flex-col">
                     <h1 className="transform -translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out text-center text-gray-800 font-bold text-xl">
                         {title}
@@ -545,24 +820,20 @@ const Project = ({ img, title, teknologi, lang }) => {
                     <h3 className="transform -translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out text-center text-blue-500">
                         {teknologi.replace(",", " / ")}
                     </h3>
-                    <a
-                        href={`/project/${title
-                            .replace(" ", "-")
-                            .toLowerCase()}`}
+                    <button
+                        onClick={() => isOpen(true, index)}
                         className="transform translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out mt-8 self-center bg-blue-500 hover:bg-blue-600 px-4 py-1 font-bold rounded-md text-white"
                     >
                         {lang}
-                    </a>
+                    </button>
                 </div>
             </div>
-            <div className="absolute inset-0 z-10">
-                <SimpleImg
-                    className="h-52 w-full object-cover object-center"
-                    src={`storage/images/${img.split(",")[0]}`}
-                    alt={title}
-                    importance="low"
-                />
-            </div>
+            <SimpleImg
+                className="absolute inset-0 z-10 h-52 max-h-52 w-full object-cover object-center"
+                src={`storage/images/${img.split(",")[0]}`}
+                alt={title}
+                importance="low"
+            />
             <div className="absolute z-0 top-1/2 left-0 right-0 transform -translate-y-1/2 text-center text-xl font-bold">
                 No Image
             </div>

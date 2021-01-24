@@ -33,7 +33,7 @@ const Header = ({ lang = 0, changeLanguage }) => {
         setDarkMode(isTrue);
     }, []);
     return (
-        <nav className="w-full fixed top-8 z-50">
+        <nav className="w-full fixed top-8 z-40">
             <div className="max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl flex space-x-4 justify-between">
                 <button
                     className="transform hover:scale-110 duration-200 ease-in-out shadow-md focus:outline-none bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 w-12 h-12 text-white rounded-xl p-3"

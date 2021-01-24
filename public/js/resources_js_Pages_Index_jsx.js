@@ -2211,7 +2211,7 @@ var Header = function Header(_ref) {
     setDarkMode(isTrue);
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("nav", {
-    className: "w-full fixed top-8 z-50"
+    className: "w-full fixed top-8 z-40"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl flex space-x-4 justify-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -2327,8 +2327,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 /* harmony import */ var react_simple_img__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-simple-img */ "./node_modules/react-simple-img/lib/index.js");
-/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
-/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
+/* harmony import */ var framer_motion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! framer-motion */ "./node_modules/framer-motion/dist/framer-motion.es.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/headlessui.esm.js");
+/* harmony import */ var _Components_Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/Header */ "./resources/js/Components/Header.jsx");
+/* harmony import */ var _Components_Footer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Components/Footer */ "./resources/js/Components/Footer.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2348,6 +2350,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+var variants = {
+  enter: function enter(direction) {
+    return {
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1
+  },
+  exit: function exit(direction) {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    };
+  }
+};
+var swipeConfidenceThreshold = 10000;
+
+var swipePower = function swipePower(offset, velocity) {
+  return Math.abs(offset) * velocity;
+};
+
 var Index = function Index() {
   var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props,
       me = _usePage$props.me,
@@ -2357,6 +2387,31 @@ var Index = function Index() {
       _useState2 = _slicedToArray(_useState, 2),
       lang = _useState2[0],
       setLang = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      page = _useState4[0],
+      setPage = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
+      _useState6 = _slicedToArray(_useState5, 2),
+      direction = _useState6[0],
+      setDirection = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      images = _useState8[0],
+      setImages = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      isOpen = _useState10[0],
+      setIsOpen = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+      _useState12 = _slicedToArray(_useState11, 2),
+      selectedProject = _useState12[0],
+      setSelectedProject = _useState12[1];
 
   var changeLanguage = function changeLanguage(id) {
     localStorage.setItem("lang", id);
@@ -2368,6 +2423,39 @@ var Index = function Index() {
     window.scrollTo(0, about.offsetTop);
   };
 
+  var openModal = function openModal(state, index) {
+    var selected = projects[index];
+    var images = selected.foto.split(",");
+    setSelectedProject(selected);
+    setImages(images);
+    setIsOpen(state);
+  };
+
+  var closeModal = function closeModal() {
+    setSelectedProject({});
+    setPage(0);
+    setImages([]);
+    setIsOpen(false);
+  };
+
+  var paginate = function paginate(newDirection) {
+    if (newDirection === -1) {
+      if (page === 0) {
+        setPage(images.length - 1);
+      } else {
+        setPage(page - 1);
+      }
+    } else {
+      if (page === images.length - 1) {
+        setPage(0);
+      } else {
+        setPage(page + 1);
+      }
+    }
+
+    setDirection(newDirection);
+  };
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     document.title = "Portfolio - Achmad Musyaffa Taufiqi";
     var ls = localStorage.getItem("lang");
@@ -2376,28 +2464,72 @@ var Index = function Index() {
       setLang(Number(ls));
     }
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Header__WEBPACK_IMPORTED_MODULE_3__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Header__WEBPACK_IMPORTED_MODULE_5__.default, {
     lang: lang,
     changeLanguage: changeLanguage
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl flex flex-col space-y-4 mt-40"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "grid grid-cols-1 lg:grid-cols-2 gap-8 mx-auto"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "flex justify-center lg:justify-end"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      width: 0,
+      opacity: 0
+    },
+    animate: {
+      width: "auto",
+      opacity: 1
+    },
+    transition: {
+      duration: 1.5
+    },
+    className: "flex justify-center lg:justify-end h-64"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_simple_img__WEBPACK_IMPORTED_MODULE_2__.SimpleImg, {
-    className: "w-64 h-64 rounded-full ring-4 ring-blue-500",
+    className: "w-64 h-64 max-h-64 rounded-full ring-4 ring-blue-500",
     src: "me.jpg",
     alt: "Achmad Musyaffa Taufiqi"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex flex-col justify-center space-y-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex flex-col space-y-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      height: 0,
+      opacity: 0
+    },
+    animate: {
+      height: "auto",
+      opacity: 1
+    },
+    transition: {
+      duration: 1
+    },
     className: "font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200"
-  }, me[lang].header.split(";")[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, me[lang].header.split(";")[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      height: 0,
+      opacity: 0
+    },
+    animate: {
+      height: "auto",
+      opacity: 1
+    },
+    transition: {
+      duration: 1
+    },
     className: "font-bold text-3xl block text-center lg:text-left text-gray-800 dark:text-gray-200"
-  }, me[lang].header.split(";")[1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, me[lang].header.split(";")[1]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      height: 0,
+      opacity: 0
+    },
+    animate: {
+      height: "auto",
+      opacity: 1
+    },
+    transition: {
+      duration: 1
+    },
     className: "relative inline-flex justify-center lg:justify-start"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "font-bold text-3xl text-center lg:text-left text-gray-800 dark:text-gray-200"
@@ -2425,17 +2557,50 @@ var Index = function Index() {
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "pt-32",
     id: "about-me"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "flex flex-col lg:flex-row items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      x: -100,
+      opacity: 0
+    },
+    animate: {
+      x: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1.5
+    },
+    className: "flex flex-col lg:flex-row items-center whitespace-nowrap"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "font-bold text-3xl text-gray-800 dark:text-gray-200"
-  }, me[lang].tentang.split(";")[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+  }, me[lang].tentang.split(";")[0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.svg, {
+    initial: {
+      width: 0,
+      opacity: 0
+    },
+    animate: {
+      width: "auto",
+      opacity: 1
+    },
+    transition: {
+      duration: 1.5
+    },
     className: "w-20 h-1 text-blue-500 mt-3 lg:ml-6 lg:mt-0",
     fill: "currentColor"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("rect", {
     height: "100%",
     width: "100%"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1.5
+    },
     className: "grid grid-rows-2 mt-6 lg:grid-cols-3 lg:grid-rows-1"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "text-lg text-center lg:text-left lg:col-span-2 leading-loose dark:text-white"
@@ -2501,11 +2666,13 @@ var Index = function Index() {
     className: "text-lg grid grid-rows-2 mt-6 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-1"
   }, projects && projects.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(Project, {
+      index: index,
       key: index,
       img: item.foto,
       title: item.judul,
       teknologi: item.teknologi,
-      lang: me[lang].more
+      lang: me[lang].more,
+      isOpen: openModal
     });
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex justify-center mt-8"
@@ -2516,7 +2683,18 @@ var Index = function Index() {
     title: me[lang].more
   }, me[lang].more))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "pt-32"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1
+    },
     className: "flex flex-col items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "font-bold text-3xl text-gray-800 dark:text-gray-200"
@@ -2526,7 +2704,18 @@ var Index = function Index() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("rect", {
     height: "100%",
     width: "100%"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.div, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1.5
+    },
     className: "text-lg mt-8 text-center px-4 md:px-24 dark:text-white"
   }, me[lang].skills.split(";")[1], /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "https://www.php.net/",
@@ -2601,8 +2790,19 @@ var Index = function Index() {
     className: "grid grid-cols-1 justify-items-center gap-8 mt-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex space-x-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1
+    },
+    href: "https://reactjs.org"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     focusable: "false",
@@ -2612,8 +2812,20 @@ var Index = function Index() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
     d: "M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345c.522 2.107.986 4.173 1.386 6.193zM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94zM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18zM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3zM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86z",
     fill: "#00D8FF"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1,
+      delay: 0.3
+    },
+    href: "https://tailwindcss.com"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     focusable: "false",
@@ -2635,8 +2847,20 @@ var Index = function Index() {
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
     d: "M128 0C93.867 0 72.533 17.067 64 51.2C76.8 34.133 91.733 27.733 108.8 32c9.737 2.434 16.697 9.499 24.401 17.318C145.751 62.057 160.275 76.8 192 76.8c34.133 0 55.467-17.067 64-51.2c-12.8 17.067-27.733 23.467-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C174.249 14.743 159.725 0 128 0zM64 76.8C29.867 76.8 8.533 93.867 0 128c12.8-17.067 27.733-23.467 44.8-19.2c9.737 2.434 16.697 9.499 24.401 17.318C81.751 138.857 96.275 153.6 128 153.6c34.133 0 55.467-17.067 64-51.2c-12.8 17.067-27.733 23.467-44.8 19.2c-9.737-2.434-16.697-9.499-24.401-17.318C110.249 91.543 95.725 76.8 64 76.8z",
     fill: "url(#IconifyId-1771e3f8fac-dad491-2)"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1,
+      delay: 0.6
+    },
+    href: "https://laravel.com"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     focusable: "false",
@@ -2648,8 +2872,20 @@ var Index = function Index() {
     fill: "#FF2D20"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex space-x-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1,
+      delay: 0.9
+    },
+    href: "https://getbootstrap.com/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     focusable: "false",
@@ -2662,8 +2898,20 @@ var Index = function Index() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
     d: "M106.158 113.238V76.985h31.911c3.04 0 5.97.253 8.792.76c2.822.506 5.319 1.41 7.49 2.713c2.17 1.303 3.907 3.112 5.21 5.427c1.302 2.316 1.954 5.283 1.954 8.9c0 6.513-1.954 11.217-5.862 14.111c-3.907 2.895-8.9 4.342-14.979 4.342h-34.516zM72.075 50.5v155h75.112c6.947 0 13.713-.868 20.298-2.605c6.585-1.737 12.446-4.414 17.584-8.032c5.137-3.618 9.226-8.286 12.265-14.002c3.04-5.717 4.559-12.483 4.559-20.298c0-9.697-2.352-17.982-7.055-24.856c-4.704-6.875-11.832-11.687-21.384-14.437c6.947-3.328 12.194-7.598 15.74-12.808c3.545-5.21 5.318-11.722 5.318-19.538c0-7.236-1.194-13.314-3.582-18.235c-2.388-4.92-5.753-8.864-10.095-11.831c-4.341-2.967-9.551-5.102-15.63-6.404c-6.078-1.303-12.808-1.954-20.189-1.954H72.075zm34.083 128.515v-42.549h37.121c7.381 0 13.315 1.7 17.802 5.102c4.486 3.401 6.73 9.081 6.73 17.041c0 4.053-.688 7.381-2.063 9.986c-1.375 2.605-3.22 4.668-5.536 6.187c-2.315 1.52-4.993 2.605-8.032 3.257c-3.04.65-6.223.976-9.552.976h-36.47z",
     fill: "#FFF"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1,
+      delay: 1.2
+    },
+    href: "https://python.org/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     xmlnsXlink: "http://www.w3.org/1999/xlink",
@@ -2720,8 +2968,20 @@ var Index = function Index() {
     fill: "url(#d)",
     overflow: "visible",
     transform: "translate(-44.938 -67.469)"
-  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: ""
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.a, {
+    initial: {
+      y: 150,
+      opacity: 0
+    },
+    animate: {
+      y: 0,
+      opacity: 1
+    },
+    transition: {
+      duration: 1,
+      delay: 1.5
+    },
+    href: "#"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     className: "text-5xl h-12 w-auto filter-grayscale hover:filter-none transform hover:scale-125 duration-100 ease-out cursor-pointer",
@@ -2783,37 +3043,147 @@ var Index = function Index() {
     d: "M-29.911 405.093l519.963-300.885V-14.513H-29.911z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
     d: "M75.83 256.001c-.891-148.089 197.459-213.479 282.996-75.878l-65.635 37.98C253.569 152.569 155.19 176.002 151.659 256c1.06 73.729 97.754 107.978 141.536 37.893l65.635 37.979c-75.382 130.863-279.198 83.781-283-75.871zM326 213h12.5l-8.541 82.5h-12.735zM352.776 213h12.5l-8.541 82.5H344zM312 232.592h62.5v12.072H312zM308.5 262H371v12.072h-62.5z"
-  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Footer__WEBPACK_IMPORTED_MODULE_4__.default, {
+  }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_headlessui_react__WEBPACK_IMPORTED_MODULE_4__.Transition, {
+    show: isOpen,
+    enter: "transition-opacity duration-75",
+    enterFrom: "opacity-0",
+    enterTo: "opacity-100",
+    leave: "transition-opacity duration-150",
+    leaveFrom: "opacity-100",
+    leaveTo: "opacity-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "fixed inset-0 bg-black bg-opacity-50 z-40 p-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mt-0 md:mt-24 max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl bg-white rounded-md shadow-lg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "relative w-full h-96"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return paginate(-1);
+    },
+    className: "absolute cursor-pointer focus:outline-none z-50 bottom-0 left-0 h-16 w-16 bg-black bg-opacity-30 hover:bg-opacity-50 rounded-tr-md text-white p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    d: "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+    clipRule: "evenodd"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return paginate(1);
+    },
+    className: "absolute cursor-pointer focus:outline-none z-50 bottom-0 right-0 h-16 w-16 bg-black bg-opacity-30 hover:bg-opacity-50 rounded-tl-md text-white p-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    d: "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+    clipRule: "evenodd"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "grid h-96 max-h-96"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.AnimatePresence, {
+    initial: false,
+    custom: direction
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.img, {
+    key: page,
+    className: "absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-center rounded-t-md",
+    src: "http://localhost:8000/storage/images/".concat(images[page]),
+    custom: direction,
+    variants: variants,
+    initial: "enter",
+    animate: "center",
+    exit: "exit",
+    transition: {
+      x: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30
+      },
+      opacity: {
+        duration: 0.2
+      }
+    },
+    drag: "x",
+    dragConstraints: {
+      left: 0,
+      right: 0
+    },
+    dragElastic: 1,
+    onDragEnd: function onDragEnd(e, _ref) {
+      var offset = _ref.offset,
+          velocity = _ref.velocity;
+      var swipe = swipePower(offset.x, velocity.x);
+
+      if (swipe < -swipeConfidenceThreshold) {
+        paginate(1);
+      } else if (swipe > swipeConfidenceThreshold) {
+        paginate(-1);
+      }
+    }
+  })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "border-t-4 border-gray-800 p-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "pb-4 border-b"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
+    className: "font-bold text-3xl"
+  }, selectedProject.judul), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+    className: "font-bold text-xl"
+  }, selectedProject.untuk)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "py-4"
+  }, selectedProject.keterangan), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "flex flex-row justify-between items-center mt-4"
+  }, selectedProject.link ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: selectedProject.link,
+    target: "_blank",
+    className: "focus:outline-none rounded px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold"
+  }, me[lang].more) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: closeModal,
+    className: "focus:outline-none w-8 h-8 text-gray-300 hover:text-gray-500 transform hover:scale-150 duration-200 ease-in-out"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
+    fillRule: "evenodd",
+    d: "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+    clipRule: "evenodd"
+  })))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Footer__WEBPACK_IMPORTED_MODULE_6__.default, {
     lang: me[lang].contact
   }));
 };
 
-var Project = function Project(_ref) {
-  var img = _ref.img,
-      title = _ref.title,
-      teknologi = _ref.teknologi,
-      lang = _ref.lang;
+var Project = function Project(_ref2) {
+  var index = _ref2.index,
+      img = _ref2.img,
+      title = _ref2.title,
+      teknologi = _ref2.teknologi,
+      lang = _ref2.lang,
+      isOpen = _ref2.isOpen;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "cursor-pointer group relative h-52 w-full flex flex-col bg-gray-100 overflow-hidden shadow-md"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-50 top-0 left-0 right-0 bottom-0 bg-white"
+    className: "p-4 transform duration-500 ease-in-out opacity-0 group-hover:opacity-100 absolute z-40 top-0 left-0 right-0 bottom-0 bg-white"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "flex flex-col"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     className: "transform -translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out text-center text-gray-800 font-bold text-xl"
   }, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h3", {
     className: "transform -translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out text-center text-blue-500"
-  }, teknologi.replace(",", " / ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
-    href: "/project/".concat(title.replace(" ", "-").toLowerCase()),
+  }, teknologi.replace(",", " / ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+    onClick: function onClick() {
+      return isOpen(true, index);
+    },
     className: "transform translate-y-32 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 duration-500 ease-in-out mt-8 self-center bg-blue-500 hover:bg-blue-600 px-4 py-1 font-bold rounded-md text-white"
-  }, lang))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "absolute inset-0 z-10"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_simple_img__WEBPACK_IMPORTED_MODULE_2__.SimpleImg, {
-    className: "h-52 w-full object-cover object-center",
+  }, lang))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_simple_img__WEBPACK_IMPORTED_MODULE_2__.SimpleImg, {
+    className: "absolute inset-0 z-10 h-52 max-h-52 w-full object-cover object-center",
     src: "storage/images/".concat(img.split(",")[0]),
     alt: title,
     importance: "low"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "absolute z-0 top-1/2 left-0 right-0 transform -translate-y-1/2 text-center text-xl font-bold"
   }, "No Image"));
 };
