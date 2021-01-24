@@ -3,7 +3,6 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import { usePage } from "@inertiajs/inertia-react";
 import { SimpleImg } from "react-simple-img";
 import { motion, AnimatePresence } from "framer-motion";
-import { wrap } from "popmotion";
 import { Transition } from "@headlessui/react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
