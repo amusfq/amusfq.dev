@@ -32,6 +32,12 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+Link storage ke public folder
+
+```bash
+php artisan storage:link
+```
+
 Import file **portfolio.sql** ke database kalian.
 
 Install dependency untuk Laravel dan React
