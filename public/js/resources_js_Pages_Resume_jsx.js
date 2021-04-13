@@ -82,13 +82,15 @@ var Resume = function Resume() {
   };
 
   var pdf = function pdf() {
+    // window.scrollTo(0, 0);
     var elm = document.getElementById("pdf");
     var width = elm.offsetWidth;
     var height = elm.offsetHeight;
     html2canvas__WEBPACK_IMPORTED_MODULE_3___default()(elm, {
       width: width,
       height: height,
-      scale: 1.75
+      scale: 1.75,
+      scrollY: -window.scrollY
     }).then(function (canvas) {
       var data = canvas.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
       var pdf = new jspdf__WEBPACK_IMPORTED_MODULE_2__.jsPDF("p", "px", [height, width]);

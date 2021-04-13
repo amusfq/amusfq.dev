@@ -2351,7 +2351,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var variants = {
   enter: function enter(direction) {
     return {
@@ -3091,7 +3090,7 @@ var Index = function Index() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(framer_motion__WEBPACK_IMPORTED_MODULE_3__.motion.img, {
     key: page,
     className: "absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-center rounded-t-md",
-    src: "http://localhost:8000/storage/images/".concat(images[page]),
+    src: "storage/images/".concat(images[page]),
     custom: direction,
     variants: variants,
     initial: "enter",

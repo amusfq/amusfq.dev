@@ -45,6 +45,7 @@ const Resume = () => {
             width: width,
             height: height,
             scale: 1.75,
+            scrollY: -window.scrollY,
         }).then((canvas) => {
             const data = canvas
                 .toDataURL("image/jpg")
