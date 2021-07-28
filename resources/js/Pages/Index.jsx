@@ -674,7 +674,7 @@ const Index = () => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
             >
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 p-4">
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-40 p-4 overflow-y-auto">
                     <div className="mt-0 md:mt-24 max-w-md px-6 mx-auto sm:px-0 sm:max-w-lg md:max-w-2xl bg-white rounded-md shadow-lg">
                         <div className="relative w-full h-96">
                             <button
