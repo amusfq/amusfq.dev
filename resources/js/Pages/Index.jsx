@@ -834,7 +834,7 @@ const Project = ({ index, img, title, teknologi, lang, isOpen }) => {
                 importance="low"
                 imgStyle={{
                     width: "100%",
-                    object-position: "top",
+                    objectPosition: "top",
                     objectFit: "cover",
                     height: "100%",
                 }}
