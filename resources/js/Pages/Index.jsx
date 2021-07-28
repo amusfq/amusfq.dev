@@ -716,7 +716,7 @@ const Index = () => {
                                 >
                                     <motion.img
                                         key={page}
-                                        className="absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-center rounded-t-md"
+                                        className="absolute inset-0 z-10 h-96 max-h-96 w-full object-cover object-top rounded-t-md"
                                         src={`storage/images/${images[page]}`}
                                         custom={direction}
                                         variants={variants}
@@ -828,7 +828,7 @@ const Project = ({ index, img, title, teknologi, lang, isOpen }) => {
                 </div>
             </div>
             <SimpleImg
-                className="absolute inset-0 z-10 h-52 max-h-52 w-full object-cover object-center"
+                className="absolute inset-0 z-10 h-52 max-h-52 w-full object-cover object-top"
                 src={`storage/images/${img.split(",")[0]}`}
                 alt={title}
                 importance="low"
