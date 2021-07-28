@@ -832,6 +832,12 @@ const Project = ({ index, img, title, teknologi, lang, isOpen }) => {
                 src={`storage/images/${img.split(",")[0]}`}
                 alt={title}
                 importance="low"
+                imgStyle={{
+                    width: "100%",
+                    object-position: "top",
+                    objectFit: "cover",
+                    height: "100%",
+                }}
             />
             <div className="absolute z-0 top-1/2 left-0 right-0 transform -translate-y-1/2 text-center text-xl font-bold">
                 No Image
