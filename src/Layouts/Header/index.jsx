@@ -13,6 +13,10 @@ export default function Header() {
   };
 
   const scrollTo = (id) => () => {
+    const location = window.location;
+    if (location.pathname === "/archive") {
+      return (window.location = "/#" + id);
+    }
     const target = document.getElementById(id);
     target.scrollIntoView({ behavior: "smooth" });
     if (showNavbar) toggleNavbar();

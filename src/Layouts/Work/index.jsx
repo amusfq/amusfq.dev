@@ -109,7 +109,7 @@ const Work = () => {
                 <div className="project-link flex flex-row items-center space-x-4">
                   {work.external_link && (
                     <a
-                      class="hover:text-[#ffa358] text-xl"
+                      className="hover:text-[#ffa358] text-xl"
                       href={work.external_link}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -119,7 +119,7 @@ const Work = () => {
                   )}
                   {work.github_link && (
                     <a
-                      class="hover:text-[#ffa358] text-xl"
+                      className="hover:text-[#ffa358] text-xl"
                       href={work.github_link}
                       target="_blank"
                       rel="noopener noreferrer"
