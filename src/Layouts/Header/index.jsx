@@ -29,6 +29,10 @@ export default function Header() {
     setNavbarVisibility(visible);
   };
 
+  const downloadResume = () => {
+    window.open("/Resume - Achmad Musyaffa Taufiqi.pdf");
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", hideNavbar);
     return () => {
@@ -65,7 +69,7 @@ export default function Header() {
             <Button outline={false} onClick={scrollTo("contact")}>
               Contact
             </Button>
-            <Button>Resume</Button>
+            <Button onClick={downloadResume}>Resume</Button>
           </div>
           <Button className="md:hidden" outline={false} onClick={toggleNavbar}>
             <i className="fas fa-bars fa-2x text-primary"></i>
@@ -101,7 +105,7 @@ export default function Header() {
               <Button outline={false} onClick={scrollTo("contact")}>
                 Contact
               </Button>
-              <Button>Resume</Button>
+              <Button onClick={downloadResume}>Resume</Button>
             </div>
           </div>
         </div>
