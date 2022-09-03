@@ -1,5 +1,4 @@
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
 export default function Button({
   type = "button",
   outline = true,
