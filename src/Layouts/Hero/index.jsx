@@ -18,7 +18,7 @@ const Hero = () => {
             🚀 Exploring opportunities and side projects.
           </p>
           <p className="text-base md:text-xl">
-            🎓 Currently an Informatics Student at Narotama University.
+            ⌨️ Software Engineer at PT. Halotec Indonesia.
           </p>
         </div>
         <div className="flex flex-row items-center justify-between md:justify-start space-x-4">
