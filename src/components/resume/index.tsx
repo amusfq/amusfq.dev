@@ -129,7 +129,7 @@ export const ExperienceSection = ({title, icon, timelines, onAddClick}: Experien
                     </p>
                   )
                 }
-                <div className="flex flex-wrap items-center gap-1 ">
+                <div className="flex flex-wrap items-center gap-1">
                   {
                     item.skills.map((skill, idy) => (
                       <p key={idy}
