@@ -1,64 +1,36 @@
-# Portfolio
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Ini adalah website portfolio dan resume yang dibangun menggunakan ReactJS, Laravel dan InertiaJS.
+## Getting Started
 
-## Instalasi dan konfigurasi
-
-Clone repo ini
+First, run the development server:
 
 ```bash
-git clone https://github.com/amusfq/portfolio.git
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Buka folder portfolio hasil clone dan buat file **.env**
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-cd portfolio
-cp .env.example .env
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Generate APP_KEY untuk laravel
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-```bash
-php artisan key:generate
-```
+## Learn More
 
-Edit file **.env**
-sesuaikan baris berikut dengan database kalian
+To learn more about Next.js, take a look at the following resources:
 
-```.env
-DB_DATABASE=portfolio
-DB_USERNAME=root
-DB_PASSWORD=
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-Link storage ke public folder
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-```bash
-php artisan storage:link
-```
+## Deploy on Vercel
 
-Import file **portfolio.sql** ke database kalian.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Install dependency untuk Laravel dan React
-
-```bash
-composer install
-npm install
-```
-
-build React
-
-```bash
-npm run prod
-```
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
