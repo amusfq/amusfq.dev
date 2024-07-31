@@ -11,7 +11,7 @@ import {
 } from "keep-react";
 import {Envelope, Lock} from "@phosphor-icons/react";
 import Input from "@/components/input";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import {EmailSignInButton} from "firebase-nextjs/client/components";
 import {getUserCS} from "firebase-nextjs/client/auth";
 
@@ -22,7 +22,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  function handleChange(e) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.type === "email") setEmail(e.target.value);
     if (e.target.type === "password") setPassword(e.target.value);
     setError("")
