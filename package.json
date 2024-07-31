@@ -1,36 +1,46 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
-    },
-    "devDependencies": {
-        "@babel/preset-react": "^7.12.10",
-        "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
-        "lodash": "^4.17.19",
-        "postcss": "^8.2.4"
-    },
-    "dependencies": {
-        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@headlessui/react": "^0.2.0",
-        "@inertiajs/inertia": "^0.8.2",
-        "@inertiajs/inertia-react": "^0.5.1",
-        "@inertiajs/progress": "^0.2.4",
-        "autoprefixer": "^10.2.1",
-        "framer-motion": "^3.2.1",
-        "html2canvas": "^1.0.0-rc.7",
-        "jspdf": "^2.3.0",
-        "popmotion": "^9.1.0",
-        "react": "^17.0.1",
-        "react-dom": "^17.0.1",
-        "react-simple-img": "^2.3.9",
-        "react-to-pdf": "^0.0.13",
-        "tailwindcss": "^2.0.2"
-    }
+  "name": "amusfq.dev",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@mdxeditor/editor": "^3.10.1",
+    "@next/mdx": "^14.2.5",
+    "@phosphor-icons/react": "^2.1.7",
+    "@types/mdx": "^2.0.13",
+    "clsx": "^2.1.1",
+    "cookies-next": "^4.2.1",
+    "dayjs": "^1.11.12",
+    "firebase": "^10.12.4",
+    "firebase-nextjs": "^1.6.9",
+    "keep-react": "^1.4.3",
+    "next": "14.2.5",
+    "react": "^18",
+    "react-datepicker": "^7.3.0",
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
+    "react-select": "^5.8.0",
+    "remark-gfm": "^4.0.0",
+    "yup": "^1.4.0",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
 }
