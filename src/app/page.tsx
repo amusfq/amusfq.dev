@@ -20,16 +20,6 @@ export default async function About() {
           <div className="w-full md:w-4/6">
             <AboutMDX/>
           </div>
-          <div className="w-full md:w-2/6">
-            <figure>
-              <embed
-                src="https://wakatime.com/share/@e643cd98-59f5-4154-a600-c208931a42b4/a75feb8c-b6ff-4610-92a3-6795b354370a.svg"></embed>
-            </figure>
-            <figure>
-              <embed
-                src="https://wakatime.com/share/@e643cd98-59f5-4154-a600-c208931a42b4/50418ca5-9257-4c23-b352-d7c5cc485332.svg"></embed>
-            </figure>
-          </div>
         </div>
       </div>
     </div>
