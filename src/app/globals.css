@@ -6,3 +6,11 @@
 body {
   @apply !bg-darken;
 }
+
+.select__control {
+  @apply !bg-transparent !border-metal-800
+}
+
+.select__single-value {
+  @apply !text-white
+}

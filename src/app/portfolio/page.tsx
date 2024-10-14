@@ -1,9 +1,11 @@
 import {Metadata} from "next";
-import {Tab, TabContent, TabItem, TabList} from "keep-react";
-import Card, {PortfolioProps} from "@/components/portfolio/card";
+import {PortfolioProps} from "@/components/portfolio/card";
 import {collection, getDocs, getFirestore} from "@firebase/firestore";
 import {firebaseApp} from "../../../firebase-app-config";
-import dayjs from "dayjs";
+import Link from "next/link";
+import {Pencil} from "@phosphor-icons/react/dist/ssr";
+import {getUserSS} from "firebase-nextjs/server/auth";
+import PortfolioTab from "@/components/portfolio/Tab";
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -34,33 +36,21 @@ async function getData() {
 
 export default async function Portfolio() {
   const data = await getData();
+  const user = await getUserSS()
   const tabItems = ['all', 'web-development', 'mobile-development']
+
   return (
     <div className='space-y-8'>
       <div className='space-y-1'>
-        <h1 className='font-bold text-white text-3xl'>Portfolio</h1>
+        <div className='flex flex-row space-x-3 items-center'>
+          <h1 className='font-bold text-white text-3xl'>
+            <span>Portfolio</span>
+          </h1>
+          {user && <Link href='/admin/portfolio'><Pencil size={24} color="#ffffff"/></Link>}
+        </div>
         <div className='border-2 border-blue-500 w-12'/>
       </div>
-      <div className='space-y-4'>
-        <Tab activeLabel="all" itemType="link">
-          <TabList>
-            {
-              tabItems.map((item) => (
-                <TabItem label={item} key={`tabItem-${item}`} >{item.toUpperCase().replace('-', ' ')}</TabItem>
-              ))
-            }
-          </TabList>
-          {
-            tabItems.map((item) => (
-              <TabContent key={`tabContent-${item}`} value={item} className='w-full max-w-full'>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {data.filter((row) => item === 'all' ? true : row.type === item).map(item => (<Card key={item.id} data={item}/>))}
-                </div>
-              </TabContent>
-            ))
-          }
-        </Tab>
-      </div>
+      <PortfolioTab tabItems={tabItems} data={data}/>
     </div>
   );
 }
