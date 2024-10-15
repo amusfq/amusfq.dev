@@ -29,7 +29,8 @@ export default function AdminPortfolio() {
     portfolios.sort((a, b) => {
       return a.order - b.order;
     });
-    setData(portfolios);
+    console.log(portfolios)
+    // setData(portfolios);
   }
 
   useEffect(() => {

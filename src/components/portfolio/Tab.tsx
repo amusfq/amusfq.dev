@@ -23,7 +23,7 @@ const PortfolioTab = ({tabItems, data, edit = false}: PortfolioTabProps) => {
           tabItems.map((item) => (
             <TabContent key={`tabContent-${item}`} value={item} className='w-full max-w-full'>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <AddCard/>
+                {edit && <AddCard/>}
                 {data.filter((row) => item === 'all' ? true : row.type === item).map(item => (
                   <Card key={item.id} data={item}/>))}
               </div>
