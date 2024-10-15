@@ -6,36 +6,15 @@ import Link from "next/link";
 import {Pencil} from "@phosphor-icons/react/dist/ssr";
 import {getUserSS} from "firebase-nextjs/server/auth";
 import PortfolioTab from "@/components/portfolio/Tab";
+import { getPortfolio } from "@/services/portfolio";
 
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: "Portfolio - Personal Portfolio",
 };
 
-async function getData() {
-  const db = getFirestore(firebaseApp);
-  let query = await getDocs(collection(db, "portfolio"));
-  const data: PortfolioProps[] = [];
-  query.forEach((doc) => {
-    const docData = doc.data();
-    data.push({
-      id: doc.id,
-      order: docData.order,
-      type: docData.type,
-      title: docData.title,
-      description: docData.description,
-      images: JSON.parse(docData.images),
-      stacks: JSON.parse(docData.stacks),
-    });
-  });
-  data.sort((a, b) => {
-    return a.order - b.order;
-  });
-  return data;
-}
-
 export default async function Portfolio() {
-  const data = await getData();
+  const data = await getPortfolio();
   const user = await getUserSS()
   const tabItems = ['all', 'web-development', 'mobile-development']
 

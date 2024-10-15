@@ -5,36 +5,20 @@ import {collection, getDocs, getFirestore} from "@firebase/firestore";
 import {firebaseApp} from "../../../../firebase-app-config";
 import {useEffect, useState} from "react";
 import PortfolioTabs from "@/components/portfolio/Tab";
+import { getPortfolio } from "@/services/portfolio";
 
 export default function AdminPortfolio() {
   const tabItems = ['all', 'web-development', 'mobile-development']
   const [data, setData] = useState<PortfolioProps[]>([])
 
-  async function getData() {
-    const db = getFirestore(firebaseApp);
-    let query = await getDocs(collection(db, "portfolio"));
-    const portfolios: PortfolioProps[] = [];
-    query.forEach((doc) => {
-      const docData = doc.data();
-      portfolios.push({
-        id: doc.id,
-        order: docData.order,
-        type: docData.type,
-        title: docData.title,
-        description: docData.description,
-        images: JSON.parse(docData.images),
-        stacks: JSON.parse(docData.stacks),
-      });
-    });
-    portfolios.sort((a, b) => {
-      return a.order - b.order;
-    });
-    console.log(portfolios)
-    // setData(portfolios);
-  }
-
   useEffect(() => {
-    getData()
+    // anonymouse async function
+    const getData = async () => {
+      const portfolios = await getPortfolio();
+      setData(portfolios);
+    }
+
+    getData();
   }, [])
 
   return (

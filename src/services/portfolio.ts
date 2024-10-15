@@ -1,4 +1,8 @@
-async function getData() {
+import { firebaseApp } from "../../firebase-app-config";
+import { collection, getDocs, getFirestore } from "@firebase/firestore";
+import { PortfolioProps } from "@/components/portfolio/card";
+
+export async function getPortfolio() {
   const db = getFirestore(firebaseApp);
   let query = await getDocs(collection(db, "portfolio"));
   const data: PortfolioProps[] = [];
