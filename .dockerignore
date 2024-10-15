@@ -1,7 +1,9 @@
-.dockerignore
-.idea
-.git
-.gitignore
 Dockerfile
+.dockerignore
 node_modules
+yarn-debug.log
 README.md
+.next
+docker
+.git
+.idea

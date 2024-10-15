@@ -1,36 +1,49 @@
-# Dependencies
-FROM node:18-alpine AS deps
-WORKDIR /app
+FROM node:18-alpine AS base
+
+
+# Install depencencies only when needed
+FROM base AS deps
 
 RUN apk add --no-cache libc6-compat
 
-COPY package.json .
-COPY yarn.lock .
+WORKDIR /app
 
-ARG NODE_ENV
-ENV NODE_ENV $NODE_ENV
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
 
-RUN yarn
-
-# Builder
-From node:18-alpine as builder
+# 2. Rebuild the source code only when needed
+From base as builder
 
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
-
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
-# Runner
-FROM node:18-alpine as runner
+# 3. Production image, copy all the files and run next
+FROM base as runner
 
 WORKDIR /app
 
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./
+ENV NODE_ENV=production
 
-CMD ["yarn", "start"]
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT=3000
+
+CMD HOSTNAME="0.0.0.0" node server.js
