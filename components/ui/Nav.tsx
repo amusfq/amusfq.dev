@@ -1,4 +1,5 @@
 import ThemeToggle from "@/components/ui/ThemeToggle";
+import Link from "next/link";
 
 export default function Nav() {
     return (
@@ -12,24 +13,19 @@ export default function Nav() {
             <div className="flex items-center gap-6">
                 <ul className="flex space-x-8 text-lg font-medium text-slate-600 dark:text-slate-300">
                     <li className="flex items-center">
-                        <a href="#" className="hover:text-primary transition-colors">
+                        <Link href="/" className="hover:text-primary transition-colors">
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li className="flex items-center">
-                        <a href="/projects" className="hover:text-primary transition-colors">
+                        <Link href="/projects" className="hover:text-primary transition-colors">
                             Projects
-                        </a>
+                        </Link>
                     </li>
                     <li className="flex items-center">
-                        <a href="#" className="hover:text-primary transition-colors">
-                            About
-                        </a>
-                    </li>
-                    <li className="flex items-center">
-                        <a href="#" className="hover:text-primary transition-colors">
+                        <Link href="#" className="hover:text-primary transition-colors">
                             Contact
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         <ThemeToggle/>

@@ -7,11 +7,11 @@ export const metadata: Metadata = {
     description: "Modern e-commerce platform showcase",
 };
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+type Props = Readonly<{
     children: React.ReactNode;
-}>) {
+}>
+
+export default function RootLayout({children}: Props) {
     return (
         <html lang="en">
         <head>

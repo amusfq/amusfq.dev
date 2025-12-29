@@ -1,19 +1,24 @@
 import Nav from "@/components/ui/Nav";
-import Showcase from "@/components/projects/Showcase";
 
-export default function Project() {
+type Props = Readonly<{
+    children: React.ReactNode;
+}>
+
+export default function Layout({children}: Props) {
     return (
+
         <div className="relative">
             {/* Floating blobs background */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-blue-500/10 opacity-70 animate-blob" />
+                <div
+                    className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-blue-500/10 opacity-70 animate-blob"/>
                 <div
                     className="absolute top-0 right-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-purple-500/10 opacity-70 animate-blob"
-                    style={{ animationDelay: "2s" }}
+                    style={{animationDelay: "2s"}}
                 />
                 <div
                     className="absolute -bottom-32 left-1/3 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-normal dark:bg-indigo-500/10 opacity-70 animate-blob"
-                    style={{ animationDelay: "4s" }}
+                    style={{animationDelay: "4s"}}
                 />
             </div>
 
@@ -30,9 +35,9 @@ export default function Project() {
                 </svg>
             </div>
 
+            <Nav/>
             {/* Content */}
-            <Nav />
-            <Showcase />
+            {children}
         </div>
-    );
+    )
 }
