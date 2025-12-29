@@ -21,16 +21,23 @@ export const projects: Project[] = [
         "period": {"start": "2022-09", "end": "2022-11"},
         "description": "Independent educational and publishing platform carrying the spirit of \"Sharing is Caring\" and the principle that \"Knowledge is Hope\", aimed at expanding literacy and education access through digital solutions.",
         "tech_stack": [
-            {"label": "Next.js", "icon": "nextjs-icon"},
+            {"label": "Next.js", "icon": "nextjs"},
             {"label": "Laravel", "icon": "laravel"},
             {"label": "MySQL", "icon": "mysql"}
         ],
         "skills": ["Next.js", "Laravel", "Web Development"],
         "assets": {
-            "thumbnail": "/assets/thalibulilmi.png",
+            "thumbnail": "thalibulilmi.png",
             "gallery": []
         },
-        "url": "https://thalibulilmi.com"
+        "url": "https://thalibulilmi.com",
+        "features": [
+            "Article publishing with categories and tags",
+            "Search and archive for educational content",
+            "Responsive UI with accessible typography",
+            "Admin CMS for content and media management",
+            "SEO-friendly routing and metadata"
+        ]
     },
     {
         "name": "U.id",
@@ -39,16 +46,22 @@ export const projects: Project[] = [
         "period": {"start": "2022-05", "end": "2022-06"},
         "description": "Rebuilt the U.ID website using Next.js, TypeScript, and TailwindCSS to improve performance, maintainability, and user experience.",
         "tech_stack": [
-            {"label": "Next.js", "icon": "nextjs-icon"},
+            {"label": "Next.js", "icon": "nextjs"},
             {"label": "TypeScript", "icon": "typescript-icon"},
             {"label": "TailwindCSS", "icon": "tailwindcss-icon"}
         ],
         "skills": ["Next.js", "TypeScript", "TailwindCSS"],
         "assets": {
-            "thumbnail": "/assets/uid.png",
+            "thumbnail": "uid.png",
             "gallery": []
         },
-        "url": "https://u.id"
+        "url": "https://u.id",
+        "features": [
+            "Rebuilt UI with type-safe components",
+            "Improved Lighthouse performance and Core Web Vitals",
+            "Responsive layouts with TailwindCSS",
+            "Static generation and smart image optimization"
+        ]
     },
     {
         "name": "PANDI.id",
@@ -57,16 +70,22 @@ export const projects: Project[] = [
         "period": {"start": "2022-01", "end": "2022-03"},
         "description": "Rebuilt the PANDI.ID website using Next.js, TypeScript, and TailwindCSS, including integration with U.ID Single Sign-On (SSO).",
         "tech_stack": [
-            {"label": "Next.js", "icon": "nextjs-icon"},
+            {"label": "Next.js", "icon": "nextjs"},
             {"label": "TypeScript", "icon": "typescript-icon"},
             {"label": "TailwindCSS", "icon": "tailwindcss-icon"}
         ],
         "skills": ["Next.js", "TypeScript", "SSO Integration"],
         "assets": {
-            "thumbnail": "/assets/pandi.png",
+            "thumbnail": "pandi.png",
             "gallery": []
         },
-        "url": "https://pandi.id"
+        "url": "https://pandi.id",
+        "features": [
+            "Integration with U.ID Single Sign-On (SSO)",
+            "Dynamic content pages and news",
+            "Caching and ISR for fast loads",
+            "Accessible and responsive design"
+        ]
     },
     {
         "name": "Torsi",
@@ -81,9 +100,17 @@ export const projects: Project[] = [
         ],
         "skills": ["Marketplace Development", "React.js", "React Native"],
         "assets": {
-            "thumbnail": "/assets/torsi.png",
+            "thumbnail": "torsi.png",
             "gallery": []
         }
+        ,
+        "features": [
+            "Listing creation with rich media",
+            "Advanced search and filtering",
+            "Seller dashboard and lead capture",
+            "Favorites and comparison",
+            "Mobile-friendly responsive experience"
+        ]
     },
     {
         "name": "Cakrawala Data Nusantara",
@@ -94,20 +121,19 @@ export const projects: Project[] = [
         "features": [
             "Public discourse and conversation analysis",
             "Social sentiment analysis",
-            "Hoax and misinformation tracking",
             "Integrated media monitoring",
             "Brand reputation indicators",
             "Social network and topic trend visualization",
             "Real-time analytics dashboards"
         ],
         "tech_stack": [
-            {"label": "Next.js", "icon": "nextjs-icon"},
+            {"label": "Next.js", "icon": "nextjs"},
             {"label": "Nest.js", "icon": "nestjs"},
             {"label": "Python", "icon": "python"}
         ],
         "skills": ["Data Intelligence", "Sentiment Analysis", "Python", "Next.js"],
         "assets": {
-            "thumbnail": "/assets/cakrawala.png",
+            "thumbnail": "cakrawala.png",
             "gallery": []
         },
         "url": "https://cakrawala-dn.com"
@@ -124,10 +150,17 @@ export const projects: Project[] = [
         ],
         "skills": ["IoT", "Laravel", "Data Visualization"],
         "assets": {
-            "thumbnail": "/assets/awlr.png",
+            "thumbnail": "awlr.png",
             "gallery": []
         },
-        "url": ""
+        "url": "",
+        "features": [
+            "Real-time water level charts",
+            "Device telemetry and status monitoring",
+            "Threshold alerts and notifications",
+            "Historical trends and CSV export",
+            "User roles for operations team"
+        ]
     },
     {
         "name": "Carwash Management Mobile App",
@@ -141,10 +174,17 @@ export const projects: Project[] = [
         ],
         "skills": ["React Native", "Computer Vision"],
         "assets": {
-            "thumbnail": "/assets/carwash.png",
+            "thumbnail": "carwash.png",
             "gallery": []
         },
-        "url": "https://awlr-atab.pusair-pu.go.id"
+        "url": "https://awlr-atab.pusair-pu.go.id",
+        "features": [
+            "Vehicle detection via CCTV computer vision",
+            "Order and queue management",
+            "Role-based access for admins and attendants",
+            "Push notifications for updates",
+            "Daily summary reports"
+        ]
     },
     {
         "name": "Diricare",
@@ -153,16 +193,43 @@ export const projects: Project[] = [
         "period": {"start": "2023-07", "end": "2024-01"},
         "description": "Developed and integrated an OTC (Over-the-Counter) module for the Diricare platform using Next.js, TypeScript, and TailwindCSS, enabling streamlined product transactions and responsive user interfaces.",
         "tech_stack": [
-            {"label": "Next.js", "icon": "nextjs-icon"},
+            {"label": "Next.js", "icon": "nextjs"},
             {"label": "TypeScript", "icon": "typescript-icon"},
             {"label": "TailwindCSS", "icon": "tailwindcss-icon"}
         ],
         "skills": ["Next.js", "TypeScript", "SaaS Development"],
         "assets": {
-            "thumbnail": "/assets/diricare.png",
+            "thumbnail": "diricare.png",
             "gallery": []
         },
-        "url": "https://diricare.com/hello"
+        "url": "https://diricare.com/hello",
+        "features": [
+            "OTC product catalog and pricing",
+            "Cart and order creation workflow"
+        ]
+    },
+    {
+        "name": "Sistem Informasi Kandang - Anugrah Farm",
+        "slug": "anugrah-farm",
+        "company": "Anugrah Farm",
+        "period": { "start": "2020-11", "end": "2021-01" },
+        "description": "Web-based poultry farm management system developed to manage purchases, sales, stock inventory, and operational reports.",
+        "features": [
+            "Purchase management",
+            "Sales transaction management",
+            "Stock and inventory tracking",
+            "Operational and financial reporting"
+        ],
+        "tech_stack": [
+            {"label": "React.js", "icon": "react"},
+            {"label": "Laravel", "icon": "laravel"},
+            {"label": "MySQL", "icon": "mysql"}
+        ],
+        "skills": ["Business Systems", "Laravel", "React.js", "Inventory Management"],
+        "assets": {
+            "thumbnail": "anugrah_farm.png",
+            "gallery": []
+        }
     },
     {
         "name": "E-Kerjo Kediri Kab (Web)",
@@ -176,10 +243,16 @@ export const projects: Project[] = [
         ],
         "skills": ["Government Systems", "Laravel"],
         "assets": {
-            "thumbnail": "/assets/e-kerjo.png",
+            "thumbnail": "e-kerjo.png",
             "gallery": []
         },
-        "url": "https://e-kerjo.kedirikab.go.id"
+        "url": "https://e-kerjo.kedirikab.go.id",
+        "features": [
+            "Job listings with advanced filters",
+            "Employer posting and moderation",
+            "Bookmarking and sharing vacancies",
+            "Analytics for posting performance"
+        ]
     },
     {
         "name": "E-Kerjo Kediri Kab (Mobile)",
@@ -194,10 +267,16 @@ export const projects: Project[] = [
         ],
         "skills": ["Government Systems", "React Native", "Mobile App Development"],
         "assets": {
-            "thumbnail": "/assets/e-kerjo_mobile.png",
+            "thumbnail": "e-kerjo_mobile.png",
             "gallery": []
         },
-        "url": "https://play.google.com/store/apps/details?id=dev.amusfq.ekerjo&hl=id"
+        "url": "https://play.google.com/store/apps/details?id=dev.amusfq.ekerjo&hl=id",
+        "features": [
+            "Mobile-first job browsing experience",
+            "Push notifications for new vacancies",
+            "Save and revisit favorite jobs",
+            "Deep links to detail screens"
+        ]
     },
     {
         "name": "KEDAS Order System",
@@ -211,9 +290,16 @@ export const projects: Project[] = [
         ],
         "skills": ["Order Management", "Inventory Systems", "RBAC"],
         "assets": {
-            "thumbnail": "/assets/kedas.png",
+            "thumbnail": "kedas.png",
             "gallery": []
         }
+        ,
+        "features": [
+            "Role-based access control (RBAC)",
+            "Order routing and fulfilment flow",
+            "Inventory tracking",
+            "Sales dashboards and exports"
+        ]
     },
     {
         "name": "Shieldtech",
@@ -229,9 +315,16 @@ export const projects: Project[] = [
         ],
         "skills": ["Education Platforms", "Laravel", "React Native"],
         "assets": {
-            "thumbnail": "/assets/shieldtech.png",
+            "thumbnail": "shieldtech.png",
             "gallery": []
         },
-        "url": "https://shieldtech.highscope.or.id"
+        "url": "https://shieldtech.highscope.or.id",
+        "features": [
+            "Academic structure management",
+            "Students, teachers, and classes",
+            "Attendance and grading",
+            "Reports and insights",
+            "Multi-tenant organization support"
+        ]
     }
 ];

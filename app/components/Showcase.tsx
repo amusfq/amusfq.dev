@@ -88,7 +88,8 @@ export default function Showcase() {
                         {projects.map((p) => (
                             <div key={p.slug}
                                  className="min-w-full h-full flex items-center justify-center">
-                                <img src={p.assets.thumbnail} alt={p.name} className="h-full w-full object-contain"/>
+                                <img src={`/assets/small/${p.assets.thumbnail}`} alt={p.name}
+                                     className="h-full w-full object-contain"/>
                             </div>
                         ))}
                     </div>
@@ -142,9 +143,10 @@ export default function Showcase() {
                                 <div
                                     className="w-12 h-12 p-2 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 ring-1 ring-slate-200/70 dark:ring-slate-700 scale-100"
                                 >
-                                    <LogoIcon techName={t.label} icon={t.icon} />
+                                    <LogoIcon techName={t.label} icon={t.icon}/>
                                 </div>
-                                <span className="text-sm font-medium text-slate-600 dark:text-slate-400">{t.label}</span>
+                                <span
+                                    className="text-sm font-medium text-slate-600 dark:text-slate-400">{t.label}</span>
                             </div>
                         ))}
                     </div>
@@ -216,7 +218,7 @@ export default function Showcase() {
                         style={{zIndex: 0}}
                     >
                         <img
-                            src={current.assets.thumbnail}
+                            src={`/assets/${current.assets.thumbnail}`}
                             alt={current.name}
                             className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
                         />

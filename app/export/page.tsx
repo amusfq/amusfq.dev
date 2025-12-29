@@ -1,6 +1,5 @@
 import {projects} from "../data/projects";
 import LogoIcon from "../components/LogoIcon";
-import Image from "next/image";
 
 function formatYM(value?: string): string {
     if (!value) return "";
@@ -33,12 +32,22 @@ export default function ExportPage() {
             {/* No nav, no blobs, just content */}
             {projects.map((p, idx) => (
                 <section key={p.slug} className="relative z-10 w-full max-w-7xl mx-auto px-6 py-10 lg:py-14">
+                    {/* Top-right logo/brand */}
+                    <a
+                        href="https://amusfq.dev"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute right-6 top-6 flex items-center gap-2 text-slate-600 dark:text-slate-300"
+                    >
+                        <img src="/logo.png" alt="amusfq.dev" width={32} height={32} className="opacity-80"/>
+                    </a>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10 xl:gap-14 items-start">
                         {/* Visual */}
                         <div className="relative w-full">
                             <div
                                 className="aspect-video w-full rounded-xl overflow-hidden">
-                                <Image src={p.assets.thumbnail} alt={p.name} fill className="h-full w-full object-contain"/>
+                                <img src={`/assets/small/${p.assets.thumbnail}`} alt={p.name}
+                                     className="h-full w-full object-contain"/>
                             </div>
                         </div>
 
@@ -77,11 +86,11 @@ export default function ExportPage() {
                                 <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">{p.description}</p>
                             </div>
 
-                            {Array.isArray((p as any).features) && (p as any).features.length > 0 && (
+                            {Array.isArray(p.features) && p.features.length > 0 && (
                                 <div>
                                     <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-3">Features</h3>
                                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-600 dark:text-slate-300">
-                                        {(p as any).features.map((f: string, i: number) => (
+                                        {p.features.map((f: string, i: number) => (
                                             <li key={i} className="flex items-start gap-2">
                                                 <span
                                                     className="mt-[6px] inline-flex h-1.5 w-1.5 rounded-full bg-primary"/>
@@ -94,17 +103,39 @@ export default function ExportPage() {
 
                             {p.url && p.url.length > 0 ? (
                                 <div className="pt-2">
-                                    <span className="text-sm text-primary">{p.url}</span>
+                                    <a
+                                        href={p.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm text-primary underline"
+                                    >
+                                        {p.url}
+                                    </a>
                                 </div>
                             ) : null}
                         </div>
                     </div>
 
+                    {/* Footer contact info per page */}
+                    <div
+                        className="flex flex-row items-center justify-between mt-10 pt-4 border-t border-slate-200 dark:border-slate-700 text-sm text-slate-600 dark:text-slate-400 ">
+                        <span>Portfolio - Fullstack Developer</span>
+                        <div
+                            className="flex flex-col sm:flex-row gap-2 sm:gap-6 sm:items-center">
+                            <span>Achmad Musyaffa Taufiqi</span>
+                            <a href="mailto:mail@amusfq.dev" className="underline">mail@amusfq.dev</a>
+                            <a href="https://wa.me/+628961290670" target="_blank" rel="noopener noreferrer"
+                               className="underline">089612890670</a>
+                            <a href="https://amusfq.dev" target="_blank" rel="noopener noreferrer"
+                               className="underline">amusfq.dev</a>
+                        </div>
+                    </div>
+
                     {/* Page break after each project except the last when printing */}
                     {idx < projects.length - 1 ? <div className="print-page"/> : null}
+
                 </section>
             ))}
         </div>
     );
 }
-
