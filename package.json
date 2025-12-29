@@ -1,47 +1,37 @@
 {
-  "name": "amusfq.dev",
+  "name": "portfolio-amusfq",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
-    "@mdx-js/loader": "^3.0.1",
-    "@mdx-js/react": "^3.0.1",
-    "@mdxeditor/editor": "^3.10.1",
-    "@next/mdx": "^14.2.5",
-    "@phosphor-icons/react": "^2.1.7",
-    "@types/mdx": "^2.0.13",
+    "@iconify/react": "^6.0.2",
     "clsx": "^2.1.1",
-    "cookies-next": "^4.2.1",
-    "dayjs": "^1.11.12",
-    "firebase": "^10.12.4",
-    "firebase-nextjs": "^1.6.9",
-    "keep-react": "^1.4.3",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-datepicker": "^7.3.0",
-    "react-dom": "^18",
-    "react-hook-form": "^7.52.1",
-    "react-select": "^5.8.0",
-    "remark-gfm": "^4.0.0",
-    "sharp": "^0.33.4",
-    "yup": "^1.4.0",
-    "zustand": "^4.5.4"
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.13",
+    "@iconify-json/logos": "^1.2.10",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
 }

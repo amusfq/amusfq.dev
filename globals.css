@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Theme tokens for Tailwind v4 */
+@theme inline {
+    /* colors */
+    --color-primary: #3b82f6; /* blue-500 */
+    --color-background-light: #f8fafc; /* slate-50-ish */
+    --color-background-dark: #0f172a; /* slate-900 */
+    /* fonts (set via next/font in layout) */
+    --font-sans: var(--font-inter);
+    --font-display: var(--font-inter);
+
+    /* animations */
+    --animate-blob: blob 7s infinite;
+}
+
+/* Keyframes for blob animation */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+/* Utility for the dotted grid background */
+.bg-pattern {
+    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Base body styles; colors handled by Tailwind classes on body */
+body {
+    font-family: Inter, var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
