@@ -1,6 +1,6 @@
 'use client'
 
-import {projects} from "../data/projects";
+import {projects} from "@/app/data/projects";
 import LogoIcon from "./LogoIcon";
 
 import {useCallback, useEffect, useState} from "react";
@@ -111,9 +111,10 @@ export default function Showcase() {
                                 <div
                                     className="w-12 h-12 p-2 flex items-center justify-center rounded-lg bg-white dark:bg-slate-800 ring-1 ring-slate-200/70 dark:ring-slate-700 scale-100"
                                 >
-                                    <LogoIcon techName={t.label} icon={t.icon} />
+                                    <LogoIcon techName={t.label} icon={t.icon}/>
                                 </div>
-                                <span className="text-sm font-medium text-slate-600 dark:text-slate-400">{t.label}</span>
+                                <span
+                                    className="text-sm font-medium text-slate-600 dark:text-slate-400">{t.label}</span>
                             </div>
                         ))}
                     </div>
