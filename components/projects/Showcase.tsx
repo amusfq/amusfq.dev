@@ -1,7 +1,7 @@
 'use client'
 
-import {projects} from "../data/projects";
-import LogoIcon from "./LogoIcon";
+import {projects} from "@/data/projects";
+import LogoIcon from "@/components/ui/LogoIcon";
 
 import {useCallback, useEffect, useState} from "react";
 

@@ -1,4 +1,4 @@
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 export default function Nav() {
     return (
@@ -17,7 +17,7 @@ export default function Nav() {
                         </a>
                     </li>
                     <li className="flex items-center">
-                        <a href="#" className="hover:text-primary transition-colors">
+                        <a href="/projects" className="hover:text-primary transition-colors">
                             Projects
                         </a>
                     </li>

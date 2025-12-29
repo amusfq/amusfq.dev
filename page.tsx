@@ -1,5 +1,5 @@
-import Nav from "./components/Nav";
-import Showcase from "./components/Showcase";
+import Nav from "./components/ui/Nav";
+import Showcase from "./components/projects/Showcase";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
-import {projects} from "../data/projects";
-import LogoIcon from "../components/LogoIcon";
+import {projects} from "@/data/projects";
+import LogoIcon from "@/components/ui/LogoIcon";
 
 function formatYM(value?: string): string {
     if (!value) return "";
