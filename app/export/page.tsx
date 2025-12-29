@@ -27,10 +27,21 @@ function formatYM(value?: string): string {
 }
 
 export default function ExportPage() {
+    const ordered = [...projects].sort((a, b) => {
+        const parse = (v?: string) => {
+            if (!v) return -Infinity;
+            if (/^present$/i.test(v)) return Number.POSITIVE_INFINITY;
+            const m = v.match(/^(\d{4})-(\d{2})$/);
+            if (!m) return -Infinity;
+            const d = new Date(Number(m[1]), Number(m[2]) - 1, 1).getTime();
+            return isNaN(d) ? -Infinity : d;
+        };
+        return parse(b.period?.end) - parse(a.period?.end);
+    });
     return (
         <div className="w-full">
             {/* No nav, no blobs, just content */}
-            {projects.map((p, idx) => (
+            {ordered.map((p, idx) => (
                 <section key={p.slug} className="relative z-10 w-full max-w-7xl mx-auto px-6 py-10 lg:py-14">
                     {/* Top-right logo/brand */}
                     <a

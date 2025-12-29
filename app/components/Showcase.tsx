@@ -12,8 +12,19 @@ export default function Showcase() {
     const [lightbox, setLightbox] = useState(false);
     const [paused, setPaused] = useState(false);
 
-    const count = projects.length;
-    const current = projects[index];
+    const ordered = [...projects].sort((a, b) => {
+        const parse = (v?: string) => {
+            if (!v) return -Infinity;
+            if (/^present$/i.test(v)) return Number.POSITIVE_INFINITY;
+            const m = v.match(/^(\d{4})-(\d{2})$/);
+            if (!m) return -Infinity;
+            const d = new Date(Number(m[1]), Number(m[2]) - 1, 1).getTime();
+            return isNaN(d) ? -Infinity : d;
+        };
+        return parse(b.period?.end) - parse(a.period?.end);
+    });
+    const count = ordered.length;
+    const current = ordered[index];
     const techs = current.tech_stack.slice(0, 6);
 
     const prev = useCallback(() => setIndex((i) => (i - 1 + count) % count), [count]);
@@ -85,7 +96,7 @@ export default function Showcase() {
                         className="flex h-full w-full transition-transform duration-500 ease-out"
                         style={{transform: `translateX(-${index * 100}%)`}}
                     >
-                        {projects.map((p) => (
+                        {ordered.map((p) => (
                             <div key={p.slug}
                                  className="min-w-full h-full flex items-center justify-center">
                                 <img src={`/assets/small/${p.assets.thumbnail}`} alt={p.name}
@@ -113,7 +124,7 @@ export default function Showcase() {
 
                 {/* Dots */}
                 <div className="absolute inset-x-0 bottom-2 flex justify-center gap-2">
-                    {projects.map((p, i) => (
+                    {ordered.map((p, i) => (
                         <button
                             key={p.slug}
                             aria-label={`Go to ${p.name}`}
@@ -152,11 +163,11 @@ export default function Showcase() {
                     </div>
                     <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Description</h3>
                     <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">{current.description}</p>
-                    {Array.isArray((current as any).features) && (current as any).features.length > 0 ? (
+                    {Array.isArray(current.features) && current.features.length > 0 ? (
                         <div className="mb-8">
                             <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Features</h3>
                             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-600 dark:text-slate-300">
-                                {(current as any).features.map((f: string, idx: number) => (
+                                {current.features.map((f: string, idx: number) => (
                                     <li key={idx} className="flex items-start gap-2">
                                         <span className="mt-[3px] inline-flex h-2 w-2 rounded-full bg-primary"/>
                                         <span className="leading-relaxed">{f}</span>

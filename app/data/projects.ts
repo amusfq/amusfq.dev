@@ -17,7 +17,7 @@ export const projects: Project[] = [
     {
         "name": "Thalibul Ilmi",
         "slug": "thalibulilmi",
-        "company": "thalibulilmi.com",
+        "company": "THALIBUL ILMI PUBLISHING & EDUCATION",
         "period": {"start": "2022-09", "end": "2022-11"},
         "description": "Independent educational and publishing platform carrying the spirit of \"Sharing is Caring\" and the principle that \"Knowledge is Hope\", aimed at expanding literacy and education access through digital solutions.",
         "tech_stack": [
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     {
         "name": "U.id",
         "slug": "u-id",
-        "company": "U.id",
+        "company": "Pengelola Nama Domain Internet Indonesia (PANDI)",
         "period": {"start": "2022-05", "end": "2022-06"},
         "description": "Rebuilt the U.ID website using Next.js, TypeScript, and TailwindCSS to improve performance, maintainability, and user experience.",
         "tech_stack": [
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     {
         "name": "Torsi",
         "slug": "torsi",
-        "company": "Torsi",
+        "company": "PT Vodjo Indonesia",
         "period": {"start": "2021-12", "end": "2022-02"},
         "description": "Marketplace for buying, selling, and listing heavy equipment.",
         "tech_stack": [
@@ -115,8 +115,8 @@ export const projects: Project[] = [
     {
         "name": "Cakrawala Data Nusantara",
         "slug": "cakrawala-data-nusantara",
-        "company": "Cakrawala Data Nusantara",
-        "period": {"start": "2020-02", "end": "2022-01"},
+        "company": "amusfq.dev",
+        "period": {"start": "2020-02", "end": "Present"},
         "description": "Data intelligence platform for analyzing public conversations and supporting data-driven digital strategies, including public opinion monitoring, campaign impact measurement, and real-time decision making.",
         "features": [
             "Public discourse and conversation analysis",
@@ -141,8 +141,8 @@ export const projects: Project[] = [
     {
         "name": "AWLR Monitoring System",
         "slug": "awlr",
-        "company": "AWLR",
-        "period": {"start": "2023-01", "end": "2024-06"},
+        "company": "amusfq.dev",
+        "period": {"start": "2025-08", "end": "2025-09"},
         "description": "IoT-based Automatic Water Level Recorder system for real-time monitoring and historical analysis.",
         "tech_stack": [
             {"label": "React.js", "icon": "react"},
@@ -153,7 +153,7 @@ export const projects: Project[] = [
             "thumbnail": "awlr.png",
             "gallery": []
         },
-        "url": "",
+        "url": "https://awlr-atab.pusair-pu.go.id",
         "features": [
             "Real-time water level charts",
             "Device telemetry and status monitoring",
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     {
         "name": "Carwash Management Mobile App",
         "slug": "carwash",
-        "company": "Carwash",
+        "company": "amusfq.dev",
         "period": {"start": "2023-03", "end": "2023-06"},
         "description": "Mobile carwash management application with automatic vehicle detection using CCTV-based computer vision.",
         "tech_stack": [
@@ -177,7 +177,7 @@ export const projects: Project[] = [
             "thumbnail": "carwash.png",
             "gallery": []
         },
-        "url": "https://awlr-atab.pusair-pu.go.id",
+        "url": "",
         "features": [
             "Vehicle detection via CCTV computer vision",
             "Order and queue management",
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     {
         "name": "Diricare",
         "slug": "diricare",
-        "company": "Diricare",
+        "company": "PT Vodjo Indonesia",
         "period": {"start": "2023-07", "end": "2024-01"},
         "description": "Developed and integrated an OTC (Over-the-Counter) module for the Diricare platform using Next.js, TypeScript, and TailwindCSS, enabling streamlined product transactions and responsive user interfaces.",
         "tech_stack": [
@@ -211,7 +211,7 @@ export const projects: Project[] = [
     {
         "name": "Sistem Informasi Kandang - Anugrah Farm",
         "slug": "anugrah-farm",
-        "company": "Anugrah Farm",
+        "company": "amusfq.dev",
         "period": { "start": "2020-11", "end": "2021-01" },
         "description": "Web-based poultry farm management system developed to manage purchases, sales, stock inventory, and operational reports.",
         "features": [
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     {
         "name": "E-Kerjo Kediri Kab (Web)",
         "slug": "e-kerjo-web",
-        "company": "Kediri Regency Government",
+        "company": "amusfq.dev",
         "period": {"start": "2024-02", "end": "2024-07"},
         "description": "Government-initiated web platform designed to centralize job vacancy information and publish official employment updates from the Kediri Regency Department of Manpower.",
         "tech_stack": [
@@ -257,7 +257,7 @@ export const projects: Project[] = [
     {
         "name": "E-Kerjo Kediri Kab (Mobile)",
         "slug": "e-kerjo-mobile",
-        "company": "Kediri Regency Government",
+        "company": "amusfq.dev",
         "period": {"start": "2024-02", "end": "2024-07"},
         "description": "Mobile application version of E-Kerjo Kediri Kab, providing easy public access to job vacancy information and official manpower announcements.",
         "tech_stack": [
@@ -281,7 +281,7 @@ export const projects: Project[] = [
     {
         "name": "KEDAS Order System",
         "slug": "kedas",
-        "company": "KEDAS",
+        "company": "PT Vodjo Indonesia",
         "period": {"start": "2022-11", "end": "2023-07"},
         "description": "Order management system with role-based distribution flow, inventory control, and sales analytics dashboards.",
         "tech_stack": [
@@ -304,7 +304,7 @@ export const projects: Project[] = [
     {
         "name": "Shieldtech",
         "slug": "shieldtech",
-        "company": "Shieldtech",
+        "company": "PT Halotec Indonesia",
         "period": {"start": "2023-08", "end": "Present"},
         "description": "Integrated education management platform handling academic structure, teachers, students, and reporting.",
         "tech_stack": [
