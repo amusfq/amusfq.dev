@@ -10,6 +10,7 @@ export type Project = {
     skills: string[];
     assets: { thumbnail: string; gallery: string[] };
     url?: string;
+    features?: string[];
 };
 
 export const projects: Project[] = [

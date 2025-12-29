@@ -150,6 +150,19 @@ export default function Showcase() {
                     </div>
                     <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Description</h3>
                     <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">{current.description}</p>
+                    {Array.isArray((current as any).features) && (current as any).features.length > 0 ? (
+                        <div className="mb-8">
+                            <h3 className="text-2xl font-semibold text-slate-800 dark:text-slate-100 mb-4">Features</h3>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-600 dark:text-slate-300">
+                                {(current as any).features.map((f: string, idx: number) => (
+                                    <li key={idx} className="flex items-start gap-2">
+                                        <span className="mt-[3px] inline-flex h-2 w-2 rounded-full bg-primary"/>
+                                        <span className="leading-relaxed">{f}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ) : null}
                     {current.url && current.url.length > 0 ? (
                         <a
                             href={current.url}
