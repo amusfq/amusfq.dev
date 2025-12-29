@@ -23,7 +23,7 @@ export default function Nav() {
                         </Link>
                     </li>
                     <li className="flex items-center">
-                        <Link href="#" className="hover:text-primary transition-colors">
+                        <Link href="/contact" className="hover:text-primary transition-colors">
                             Contact
                         </Link>
                     </li>
