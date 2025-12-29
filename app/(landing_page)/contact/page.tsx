@@ -4,7 +4,7 @@ import {Metadata} from "next";
 
 export const metadata: Metadata = {
     title: "Contact – amusfq.dev",
-    description: "Get in touch with Achmad Musyaffa Taufiqi (amusfq)",
+    description: "Contact Achmad Musyaffa Taufiqi via email or WhatsApp to discuss your project.",
 };
 
 export default function ContactPage() {
@@ -29,9 +29,9 @@ export default function ContactPage() {
                                 <a className="underline" href="mailto:mail@amusfq.dev">mail@amusfq.dev</a>
                             </li>
                             <li>
-                                <a className="underline" href="https://wa.me/628961290670" target="_blank"
+                                <a className="underline" href="https://wa.me/6289612890670" target="_blank"
                                    rel="noopener noreferrer">
-                                    +62 896 1290 670
+                                    +62 896 1289 0670
                                 </a>
                             </li>
                             <li>

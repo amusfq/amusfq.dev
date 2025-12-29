@@ -1,5 +1,11 @@
 import {projects} from "@/data/projects";
 import LogoIcon from "@/components/ui/LogoIcon";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Export – amusfq.dev",
+    description: "Printable portfolio export: one page per project.",
+};
 
 function formatYM(value?: string): string {
     if (!value) return "";
@@ -135,7 +141,7 @@ export default function ExportPage() {
                             className="flex flex-col sm:flex-row gap-2 sm:gap-6 sm:items-center">
                             <span>Achmad Musyaffa Taufiqi</span>
                             <a href="mailto:mail@amusfq.dev" className="underline">mail@amusfq.dev</a>
-                            <a href="https://wa.me/+628961290670" target="_blank" rel="noopener noreferrer"
+                            <a href="https://wa.me/6289612890670" target="_blank" rel="noopener noreferrer"
                                className="underline">089612890670</a>
                             <a href="https://amusfq.dev" target="_blank" rel="noopener noreferrer"
                                className="underline">amusfq.dev</a>

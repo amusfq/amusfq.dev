@@ -3,8 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-    title: "Project Showcase",
-    description: "Modern e-commerce platform showcase",
+    title: "amusfq.dev – Achmad Musyaffa Taufiqi",
+    description: "Portfolio, projects, and contact for Achmad Musyaffa Taufiqi.",
 };
 
 type Props = Readonly<{

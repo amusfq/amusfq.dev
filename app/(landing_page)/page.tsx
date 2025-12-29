@@ -1,4 +1,10 @@
 import AboutMe from "@/components/about/AboutMe";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "About Me – amusfq.dev",
+    description: "About Achmad Musyaffa Taufiqi: full‑stack engineer crafting fast, reliable web and mobile apps.",
+};
 
 export default function Home() {
   return (
