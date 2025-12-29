@@ -29,9 +29,9 @@ export default function ContactPage() {
                                 <a className="underline" href="mailto:mail@amusfq.dev">mail@amusfq.dev</a>
                             </li>
                             <li>
-                                <a className="underline" href="https://wa.me/+628961290670" target="_blank"
+                                <a className="underline" href="https://wa.me/628961290670" target="_blank"
                                    rel="noopener noreferrer">
-                                    +62 896 1289 0670
+                                    +62 896 1290 670
                                 </a>
                             </li>
                             <li>
@@ -74,4 +74,3 @@ export default function ContactPage() {
         </main>
     );
 }
-
